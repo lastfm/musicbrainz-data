@@ -3,12 +3,19 @@
 
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
+
   <groupId>fm.last</groupId>
   <artifactId>musicbrainz-data</artifactId>
-  <version>1.2</version>
   <packaging>jar</packaging>
   <name>musicbrainz-data</name>
-  <description>Interface to the MusicBrainz PostgreSQL Database</description>
+  <version>1.2</version>
+  <description>Java data bindings for the MusicBrainz Database using Hibernate</description>
+  <url>https://github.com/lastfm/musicbrainz-data</url>
 
   <licenses>
     <license>
@@ -17,6 +24,12 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+
+  <scm>
+    <connection>scm:git:https://github.com/lastfm/musicbrainz-data.git</connection>
+    <developerConnection>scm:git:https://github.com/lastfm/musicbrainz-data.git</developerConnection>
+    <url>https://github.com/lastfm/musicbrainz-data.git</url>
+  </scm>
 
   <developers>
     <developer>
