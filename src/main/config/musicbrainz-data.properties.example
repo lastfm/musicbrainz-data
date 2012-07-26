@@ -1,0 +1,9 @@
+db.musicbrainz.driver.class=org.postgresql.Driver
+db.musicbrainz.url=jdbc:postgresql://<host>:<port>/<db-name>
+db.musicbrainz.user=
+db.musicbrainz.password=
+db.musicbrainz.initial.pool.size=
+db.musicbrainz.max.pool.size=
+db.musicbrainz.acquire.increment=
+db.musicbrainz.max.idle.time=
+db.musicbrainz.idle.connection.test.period=

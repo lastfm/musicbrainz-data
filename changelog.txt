@@ -1,0 +1,4 @@
+TBA
+
+1.2 (2012-07-26)
+- Initial release. DAOs and model objects to access artists, releases, tracks and recordings and their related entities.
