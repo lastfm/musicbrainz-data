@@ -61,24 +61,15 @@
   </organization>
 
   <properties>
-    <downloadSources>true</downloadSources>
-    <downloadJavadocs>true</downloadJavadocs>
-
     <hibernateVersion>3.6.9.Final</hibernateVersion>
     <springVersion>3.2.0.M1</springVersion>
     <slf4jVersion>1.6.6</slf4jVersion>
+
+    <downloadSources>true</downloadSources>
+    <downloadJavadocs>true</downloadJavadocs>
   </properties>
 
   <build>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-      </resource>
-      <resource>
-        <directory>src/main/config</directory>
-      </resource>
-    </resources>
-
     <testResources>
       <testResource>
         <directory>src/test/resources</directory>
@@ -107,7 +98,6 @@
       </plugin>
       <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>2.6</version>
         <executions>
           <execution>
             <goals>
@@ -130,37 +120,9 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.7</version>
         <configuration>
           <detectLinks>true</detectLinks>
           <detectJavaApiLink>true</detectJavaApiLink>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>cobertura-maven-plugin</artifactId>
-        <version>2.5.1</version>
-        <configuration>
-          <formats>
-            <format>xml</format>
-            <format>html</format>
-          </formats>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>2.3.2</version>
-        <configuration>
-          <excludeFilterFile>${project.basedir}/src/test/resources/findbugsExclude.xml</excludeFilterFile>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.6</version>
-        <configuration>
-          <configLocation>${project.basedir}/src/test/resources/checkstyle.xml</configLocation>
         </configuration>
       </plugin>
     </plugins>
