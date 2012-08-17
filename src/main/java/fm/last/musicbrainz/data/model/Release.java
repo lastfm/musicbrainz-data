@@ -139,7 +139,7 @@ public class Release {
   }
 
   /**
-   * @see {@link ReleaseDateFactory} for how partial release dates are handled.
+   * See {@link ReleaseDateFactory} for how partial release dates are handled.
    */
   public DateTime getReleaseDate() {
     return ReleaseDateFactory.INSTANCE.valueOf(year, month, day);
