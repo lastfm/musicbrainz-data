@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -12,7 +13,7 @@
   <artifactId>musicbrainz-data</artifactId>
   <packaging>jar</packaging>
   <name>musicbrainz-data</name>
-  <version>1.3-SNAPSHOT</version>
+  <version>1.4-SNAPSHOT</version>
   <description>Java data bindings for the MusicBrainz Database using Hibernate</description>
   <url>https://github.com/lastfm/musicbrainz-data</url>
 
@@ -61,7 +62,7 @@
 
   <properties>
     <hibernateVersion>3.6.9.Final</hibernateVersion>
-    <springVersion>3.2.0.M1</springVersion>
+    <springVersion>3.1.2.RELEASE</springVersion>
     <slf4jVersion>1.6.6</slf4jVersion>
   </properties>
 
@@ -182,6 +183,15 @@
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>src/main/config</directory>
+      </resource>
+    </resources>
+
     <testResources>
       <testResource>
         <directory>src/test/resources</directory>
@@ -194,20 +204,30 @@
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.5.1</version>
         <configuration>
           <source>1.6</source>
           <target>1.6</target>
+          <encoding>UTF-8</encoding>
           <showWarnings>true</showWarnings>
         </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
+        <version>2.5</version>
         <configuration>
+          <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.0</version>
+      </plugin>
+      <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.12</version>
         <executions>
           <execution>
             <goals>
@@ -217,21 +237,29 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>3.0</version>
-      </plugin>
     </plugins>
   </build>
+
   <reporting>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.8</version>
         <configuration>
           <detectLinks>true</detectLinks>
           <detectJavaApiLink>true</detectJavaApiLink>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>2.5.1</version>
+        <configuration>
+          <formats>
+            <format>xml</format>
+            <format>html</format>
+          </formats>
         </configuration>
       </plugin>
     </plugins>
