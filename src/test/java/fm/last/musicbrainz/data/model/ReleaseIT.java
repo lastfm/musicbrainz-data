@@ -1,5 +1,6 @@
 /*
  * Copyright 2012 Last.fm
+ * Copyright 2012 Aurélien Mino <aurelien.mino@gmail.com>
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -50,6 +51,7 @@ public class ReleaseIT extends AbstractHibernateModelIT {
     assertThat(release.getReleaseDate().toDateTime(), is(DateTime.parse("2011-07-23")));
     assertThat(release.getStatus(), is(ReleaseStatus.UNDEFINED));
     assertThat(release.getReleaseGroup().getId(), is(4));
+    assertThat(release.getCountry().getIsoCode(), is("FR"));
   }
 
   @Test

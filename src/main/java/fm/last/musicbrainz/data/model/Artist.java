@@ -30,6 +30,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -73,6 +74,10 @@ public class Artist extends CoreEntity<ArtistName> {
   })
   private PartialDate endDate;
 
+  @ManyToOne
+  @JoinColumn(name = "country")
+  private Country country;
+
   public Artist() {
     redirectedGids = Sets.newHashSet();
   }
@@ -100,4 +105,7 @@ public class Artist extends CoreEntity<ArtistName> {
     return endDate;
   }
 
+  public Country getCountry() {
+    return country;
+  }
 }

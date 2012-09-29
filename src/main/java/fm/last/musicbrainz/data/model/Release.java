@@ -80,6 +80,10 @@ public class Release extends CoreEntity<ReleaseName> {
   })
   private PartialDate releaseDate;
 
+  @ManyToOne
+  @JoinColumn(name = "country")
+  private Country country;
+
   public Release() {
     redirectedGids = Sets.newHashSet();
     mediums = Lists.newArrayList();
@@ -113,6 +117,10 @@ public class Release extends CoreEntity<ReleaseName> {
 
   public ReleaseGroup getReleaseGroup() {
     return releaseGroup;
+  }
+
+  public Country getCountry() {
+    return country;
   }
 
 }

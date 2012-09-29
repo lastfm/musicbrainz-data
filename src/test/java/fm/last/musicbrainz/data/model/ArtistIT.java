@@ -48,6 +48,7 @@ public class ArtistIT extends AbstractHibernateModelIT {
     assertThat(artist.getGender(), is(Gender.MALE));
     assertThat(artist.getBeginDate().toDateTime(), is(DateTime.parse("1950-02-03")));
     assertThat(artist.getEndDate().toDateTime(), is(DateTime.parse("2001-04-05")));
+    assertThat(artist.getCountry().getIsoCode(), is("GB"));
   }
 
   @Test
