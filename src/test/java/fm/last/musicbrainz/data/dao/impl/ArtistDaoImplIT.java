@@ -1,5 +1,6 @@
 /*
  * Copyright 2012 Last.fm
+ * Copyright 2012 Aurélien Mino <aurelien.mino@gmail.com>
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,6 +31,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import fm.last.musicbrainz.data.AbstractHibernateModelIT;
 import fm.last.musicbrainz.data.dao.ArtistDao;
 import fm.last.musicbrainz.data.model.Artist;
+import fm.last.musicbrainz.data.model.ArtistType;
+import fm.last.musicbrainz.data.model.Gender;
 
 public class ArtistDaoImplIT extends AbstractHibernateModelIT {
 
@@ -102,6 +105,30 @@ public class ArtistDaoImplIT extends AbstractHibernateModelIT {
   public void getByNotExistingNameReturnsEmptyList() {
     List<Artist> artists = dao.getByName("does not exist");
     assertThat(artists, hasSize(0));
+  }
+
+  @Test
+  public void testDefinedGender() {
+    Artist artist = dao.getById(1);
+    assertThat(artist.getGender(), is(Gender.MALE));
+  }
+
+  @Test
+  public void testUndefinedGender() {
+    Artist artist = dao.getById(2);
+    assertThat(artist.getGender(), is(Gender.UNDEFINED));
+  }
+
+  @Test
+  public void testDefinedType() {
+    Artist artist = dao.getById(1);
+    assertThat(artist.getType(), is(ArtistType.PERSON));
+  }
+
+  @Test
+  public void testUndefinedType() {
+    Artist artist = dao.getById(2);
+    assertThat(artist.getType(), is(ArtistType.UNDEFINED));
   }
 
 }

@@ -11,13 +11,15 @@ DELETE FROM release;
 DELETE FROM release_group_gid_redirect;
 DELETE FROM release_group;
 DELETE FROM release_name;
+DELETE FROM release_group_primary_type;
+DELETE FROM release_status;
 DELETE FROM artist_credit;
 DELETE FROM artist_credit_name;
 DELETE FROM artist_gid_redirect;
 DELETE FROM artist;
 DELETE FROM artist_name;
-DELETE FROM release_group_primary_type;
-DELETE FROM release_status;
+DELETE FROM artist_type;
+DELETE FROM gender;
 
 -- musicbrainz.release_status
 
@@ -34,9 +36,20 @@ INSERT INTO release_group_primary_type (id, name) VALUES (3, 'EP');
 INSERT INTO release_group_primary_type (id, name) VALUES (8, 'Audiobook');
 INSERT INTO release_group_primary_type (id, name) VALUES (11, 'Other');
 
+-- musicbrainz.artist_type
+
+INSERT INTO artist_type (id, name) VALUES (1, 'Person');
+INSERT INTO artist_type (id, name) VALUES (2, 'Group');
+INSERT INTO artist_type (id, name) VALUES (3, 'Other');
+
+-- musicbrainz.gender
+
+INSERT INTO gender (id, name) VALUES (1, 'Male');
+INSERT INTO gender (id, name) VALUES (2, 'Female');
+INSERT INTO gender (id, name) VALUES (3, 'Other');
 
 INSERT INTO artist_name (id, name) VALUES (1, 'Q and Not U');
-INSERT INTO artist (id, gid, name, sort_name) VALUES (1, '994fcd41-2831-4318-9825-66bacbcf2cfe', 1, 1);
+INSERT INTO artist (id, gid, name, sort_name, type, gender) VALUES (1, '994fcd41-2831-4318-9825-66bacbcf2cfe', 1, 1, 1, 1);
 INSERT INTO artist_gid_redirect (new_id, gid) VALUES (1, 'a934e33f-b3cb-47dd-9638-f7f1f25fe162');
 UPDATE artist SET last_updated = '2012-04-10 14:00:00' WHERE id = 1;
 
@@ -45,7 +58,7 @@ INSERT INTO artist (id, gid, name, sort_name, comment) VALUES (2, '194fcd41-2831
 INSERT INTO artist (id, gid, name, sort_name, comment) VALUES (3, '294fcd41-2831-4318-9825-66bacbcf2cfe', 2, 2, 'Jp');
 
 INSERT INTO artist_name (id, name) VALUES (3, 'Hot Chip');
-INSERT INTO artist (id, gid, name, sort_name) VALUES (4, 'd8915e13-d67a-4aa0-9c0b-1f126af951af', 3, 3);
+INSERT INTO artist (id, gid, name, sort_name, type) VALUES (4, 'd8915e13-d67a-4aa0-9c0b-1f126af951af', 3, 3, 2);
 INSERT INTO artist_credit (id, name, artist_count) VALUES (2, 3, 1);
 INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (2, 4, 1, '', 3);
 

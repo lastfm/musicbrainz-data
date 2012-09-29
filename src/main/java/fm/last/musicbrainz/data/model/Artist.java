@@ -48,8 +48,24 @@ public class Artist extends CoreEntity<ArtistName> {
   @Type(type = "pg-uuid")
   private final Set<UUID> redirectedGids;
 
+  @Column(name = "type")
+  @Type(type = "fm.last.musicbrainz.data.hibernate.ArtistTypeUserType")
+  private ArtistType type;
+
+  @Column(name = "gender")
+  @Type(type = "fm.last.musicbrainz.data.hibernate.GenderUserType")
+  private Gender gender;
+
   public Artist() {
     redirectedGids = Sets.newHashSet();
+  }
+
+  public ArtistType getType() {
+    return type;
+  }
+
+  public Gender getGender() {
+    return gender;
   }
 
   /**
