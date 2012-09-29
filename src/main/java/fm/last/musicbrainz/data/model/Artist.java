@@ -1,5 +1,6 @@
 /*
  * Copyright 2012 Last.fm
+ * Copyright 2012 Aurélien Mino <aurelien.mino@gmail.com>
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,15 +26,12 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
@@ -42,22 +40,7 @@ import com.google.common.collect.Sets;
 @Entity
 @Table(name = "artist", schema = "musicbrainz")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Artist {
-
-  @Id
-  @Column(name = "id")
-  private int id;
-
-  @ManyToOne(optional = false, fetch = FetchType.EAGER)
-  @JoinColumn(name = "name")
-  private ArtistName name;
-
-  @Column(name = "comment")
-  private String comment;
-
-  @Column(name = "gid", nullable = false, unique = true)
-  @Type(type = "pg-uuid")
-  private UUID gid;
+public class Artist extends CoreEntity<ArtistName> {
 
   @ElementCollection(fetch = FetchType.LAZY)
   @CollectionTable(name = "artist_gid_redirect", schema = "musicbrainz", joinColumns = @JoinColumn(name = "new_id"))
@@ -65,28 +48,8 @@ public class Artist {
   @Type(type = "pg-uuid")
   private final Set<UUID> redirectedGids;
 
-  @Column(name = "last_updated")
-  @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
-  private DateTime lastUpdated;
-
   public Artist() {
     redirectedGids = Sets.newHashSet();
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name.getName();
-  }
-
-  public String getComment() {
-    return comment;
-  }
-
-  public DateTime getLastUpdated() {
-    return lastUpdated;
   }
 
   /**
