@@ -21,9 +21,12 @@ import java.util.UUID;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -56,6 +59,20 @@ public class Artist extends CoreEntity<ArtistName> {
   @Type(type = "fm.last.musicbrainz.data.hibernate.GenderUserType")
   private Gender gender;
 
+  @Embedded
+  @AttributeOverrides({ @AttributeOverride(name = "year", column = @Column(name = "begin_date_year")),
+    @AttributeOverride(name = "month", column = @Column(name = "begin_date_month")),
+    @AttributeOverride(name = "day", column = @Column(name = "begin_date_day"))
+  })
+  private PartialDate beginDate;
+
+  @Embedded
+  @AttributeOverrides({ @AttributeOverride(name = "year", column = @Column(name = "end_date_year")),
+    @AttributeOverride(name = "month", column = @Column(name = "end_date_month")),
+    @AttributeOverride(name = "day", column = @Column(name = "end_date_day"))
+  })
+  private PartialDate endDate;
+
   public Artist() {
     redirectedGids = Sets.newHashSet();
   }
@@ -73,6 +90,14 @@ public class Artist extends CoreEntity<ArtistName> {
    */
   public Set<UUID> getGids() {
     return new ImmutableSet.Builder<UUID>().addAll(redirectedGids).add(gid).build();
+  }
+
+  public PartialDate getBeginDate() {
+    return beginDate;
+  }
+
+  public PartialDate getEndDate() {
+    return endDate;
   }
 
 }

@@ -47,7 +47,7 @@ public class ReleaseIT extends AbstractHibernateModelIT {
     assertThat(release.getLastUpdated(), is(DateTime.parse("2012-04-10T14:00:00")));
     assertThat(release.getName(), is("Multi-Disc Extravaganza"));
     assertThat(release.getMediums(), hasSize(2));
-    assertThat(release.getReleaseDate(), is(DateTime.parse("2011-07-23")));
+    assertThat(release.getReleaseDate().toDateTime(), is(DateTime.parse("2011-07-23")));
     assertThat(release.getStatus(), is(ReleaseStatus.UNDEFINED));
     assertThat(release.getReleaseGroup().getId(), is(4));
   }

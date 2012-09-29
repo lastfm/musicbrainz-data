@@ -49,7 +49,7 @@ INSERT INTO gender (id, name) VALUES (2, 'Female');
 INSERT INTO gender (id, name) VALUES (3, 'Other');
 
 INSERT INTO artist_name (id, name) VALUES (1, 'Q and Not U');
-INSERT INTO artist (id, gid, name, sort_name, type, gender) VALUES (1, '994fcd41-2831-4318-9825-66bacbcf2cfe', 1, 1, 1, 1);
+INSERT INTO artist (id, gid, name, sort_name, type, gender, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day, ended) VALUES (1, '994fcd41-2831-4318-9825-66bacbcf2cfe', 1, 1, 1, 1, 1950, 2, 3, 2001, 4, 5, true);
 INSERT INTO artist_gid_redirect (new_id, gid) VALUES (1, 'a934e33f-b3cb-47dd-9638-f7f1f25fe162');
 UPDATE artist SET last_updated = '2012-04-10 14:00:00' WHERE id = 1;
 

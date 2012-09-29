@@ -1,5 +1,6 @@
 /*
  * Copyright 2012 Last.fm
+ * Copyright 2012 Aurélien Mino <aurelien.mino@gmail.com>
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,23 +23,21 @@ import static org.junit.Assert.assertThat;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
-public class ReleaseDateFactoryTest {
-
-  private final ReleaseDateFactory factory = ReleaseDateFactory.INSTANCE;
+public class PartialDateTest {
 
   @Test
   public void yearIsNullReturnsNullReleaseDate() {
-    assertThat(factory.valueOf(null, (short) 10, (short) 5), is(nullValue()));
+    assertThat(new PartialDate(null, (short) 10, (short) 5).toDateTime(), is(nullValue()));
   }
 
   @Test
   public void monthIsNullReturnsReleaseDateFromJanuary() {
-    assertThat(factory.valueOf((short) 2011, null, (short) 5), is(DateTime.parse("2011-01-05")));
+    assertThat(new PartialDate((short) 2011, null, (short) 5).toDateTime(), is(DateTime.parse("2011-01-05")));
   }
 
   @Test
   public void dayIsNullReturnsReleaseDateFromFirstOfMonth() {
-    assertThat(factory.valueOf((short) 2011, (short) 5, null), is(DateTime.parse("2011-05-01")));
+    assertThat(new PartialDate((short) 2011, (short) 5, null).toDateTime(), is(DateTime.parse("2011-05-01")));
   }
 
 }

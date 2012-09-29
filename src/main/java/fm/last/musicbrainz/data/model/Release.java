@@ -23,9 +23,12 @@ import java.util.UUID;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -37,7 +40,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
@@ -67,18 +69,16 @@ public class Release extends CoreEntity<ReleaseName> {
   @OrderBy("position")
   private final List<Medium> mediums;
 
-  @Column(name = "date_year")
-  private Short year;
-
-  @Column(name = "date_month")
-  private Short month;
-
-  @Column(name = "date_day")
-  private Short day;
-
   @Column(name = "status")
   @Type(type = "fm.last.musicbrainz.data.hibernate.ReleaseStatusUserType")
   private ReleaseStatus status;
+
+  @Embedded
+  @AttributeOverrides({ @AttributeOverride(name = "year", column = @Column(name = "date_year")),
+    @AttributeOverride(name = "month", column = @Column(name = "date_month")),
+    @AttributeOverride(name = "day", column = @Column(name = "date_day"))
+  })
+  private PartialDate releaseDate;
 
   public Release() {
     redirectedGids = Sets.newHashSet();
@@ -103,11 +103,8 @@ public class Release extends CoreEntity<ReleaseName> {
     return new ImmutableSet.Builder<UUID>().addAll(redirectedGids).add(gid).build();
   }
 
-  /**
-   * See {@link ReleaseDateFactory} for how partial release dates are handled.
-   */
-  public DateTime getReleaseDate() {
-    return ReleaseDateFactory.INSTANCE.valueOf(year, month, day);
+  public PartialDate getReleaseDate() {
+    return releaseDate;
   }
 
   public ReleaseStatus getStatus() {
