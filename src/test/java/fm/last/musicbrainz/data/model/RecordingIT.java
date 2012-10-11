@@ -16,7 +16,7 @@
 package fm.last.musicbrainz.data.model;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.Matchers.isEmptyString;
 import static org.junit.Assert.assertThat;
 
 import java.util.Set;
@@ -40,7 +40,7 @@ public class RecordingIT extends AbstractHibernateModelIT {
     assertThat(recording.getId(), is(1));
     assertThat(recording.getName(), is("The Saint"));
     assertThat(recording.getArtistCredit().getFullName(), is("Rick Astley"));
-    assertThat(recording.getComment(), is(nullValue()));
+    assertThat(recording.getComment(), isEmptyString());
     assertThat(recording.getGids(), is(expectedGids));
     assertThat(recording.getLastUpdated(), is(DateTime.parse("2012-04-10T14:00:00")));
     assertThat(recording.getLength(), is(1000));
