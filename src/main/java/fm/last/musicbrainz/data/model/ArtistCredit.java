@@ -68,11 +68,8 @@ public class ArtistCredit {
   public String getFullName() {
     StringBuilder builder = new StringBuilder();
     for (ArtistCreditName artistCreditName : getArtistCreditNames()) {
-      String artistName = artistCreditName.getName();
-      String joinPhrase = artistCreditName.getJoinPhrase() == null ? "" : artistCreditName.getJoinPhrase();
-
-      builder.append(artistName);
-      builder.append(joinPhrase);
+      builder.append(artistCreditName.getName());
+      builder.append(artistCreditName.getJoinPhrase());
     }
     return builder.toString();
   }
