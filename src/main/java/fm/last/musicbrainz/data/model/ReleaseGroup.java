@@ -1,5 +1,6 @@
 /*
  * Copyright 2012 Last.fm
+ * Copyright 2012 Aurélien Mino <aurelien.mino@gmail.com>
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,7 +26,6 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -33,7 +33,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
@@ -42,19 +41,7 @@ import com.google.common.collect.Sets;
 @Entity
 @Table(name = "release_group", schema = "musicbrainz")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class ReleaseGroup {
-
-  @Id
-  @Column(name = "id")
-  private int id;
-
-  @ManyToOne(optional = false, fetch = FetchType.EAGER)
-  @JoinColumn(name = "name")
-  private ReleaseName name;
-
-  @Column(name = "gid", nullable = false, unique = true)
-  @Type(type = "pg-uuid")
-  private UUID gid;
+public class ReleaseGroup extends AbstractCoreEntity<ReleaseName> {
 
   @ElementCollection(fetch = FetchType.LAZY)
   @CollectionTable(name = "release_group_gid_redirect", schema = "musicbrainz", joinColumns = @JoinColumn(name = "new_id"))
@@ -70,23 +57,8 @@ public class ReleaseGroup {
   @Type(type = "fm.last.musicbrainz.data.hibernate.ReleaseGroupPrimaryTypeUserType")
   private ReleaseGroupPrimaryType type;
 
-  @Column(name = "comment")
-  private String comment;
-
-  @Column(name = "last_updated")
-  @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
-  private DateTime lastUpdated;
-
   public ReleaseGroup() {
     redirectedGids = Sets.newHashSet();
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name.getName();
   }
 
   public ArtistCredit getArtistCredit() {
@@ -95,14 +67,6 @@ public class ReleaseGroup {
 
   public ReleaseGroupPrimaryType getType() {
     return type;
-  }
-
-  public String getComment() {
-    return comment;
-  }
-
-  public DateTime getLastUpdated() {
-    return lastUpdated;
   }
 
   /**

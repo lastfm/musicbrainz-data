@@ -6,22 +6,56 @@ DELETE FROM tracklist;
 DELETE FROM recording_gid_redirect;
 DELETE FROM recording;
 DELETE FROM track_name;
+DELETE FROM release_gid_redirect;
+DELETE FROM release;
 DELETE FROM release_group_gid_redirect;
 DELETE FROM release_group;
-DELETE FROM release_group_primary_type;
-DELETE FROM release_gid_redirect;
-DELETE FROM release_status;
-DELETE FROM release;
-DELETE FROM release_group;
 DELETE FROM release_name;
+DELETE FROM release_group_primary_type;
+DELETE FROM release_status;
 DELETE FROM artist_credit;
 DELETE FROM artist_credit_name;
 DELETE FROM artist_gid_redirect;
 DELETE FROM artist;
 DELETE FROM artist_name;
+DELETE FROM artist_type;
+DELETE FROM gender;
+DELETE FROM country;
+
+-- musicbrainz.release_status
+
+INSERT INTO release_status (id, name) VALUES (1, 'Official');
+INSERT INTO release_status (id, name) VALUES (2, 'Promotion');
+INSERT INTO release_status (id, name) VALUES (3, 'Bootleg');
+INSERT INTO release_status (id, name) VALUES (4, 'Pseudo-Release');
+
+-- musicbrainz.release_group_primary_type
+
+INSERT INTO release_group_primary_type (id, name) VALUES (1, 'Album');
+INSERT INTO release_group_primary_type (id, name) VALUES (2, 'Single');
+INSERT INTO release_group_primary_type (id, name) VALUES (3, 'EP');
+INSERT INTO release_group_primary_type (id, name) VALUES (8, 'Audiobook');
+INSERT INTO release_group_primary_type (id, name) VALUES (11, 'Other');
+
+-- musicbrainz.artist_type
+
+INSERT INTO artist_type (id, name) VALUES (1, 'Person');
+INSERT INTO artist_type (id, name) VALUES (2, 'Group');
+INSERT INTO artist_type (id, name) VALUES (3, 'Other');
+
+-- musicbrainz.gender
+
+INSERT INTO gender (id, name) VALUES (1, 'Male');
+INSERT INTO gender (id, name) VALUES (2, 'Female');
+INSERT INTO gender (id, name) VALUES (3, 'Other');
+
+-- musicbrainz.country
+
+INSERT INTO country (id, iso_code, name) VALUES (221, 'GB', 'United Kingdom');
+INSERT INTO country (id, iso_code, name) VALUES (73, 'FR', 'France');
 
 INSERT INTO artist_name (id, name) VALUES (1, 'Q and Not U');
-INSERT INTO artist (id, gid, name, sort_name) VALUES (1, '994fcd41-2831-4318-9825-66bacbcf2cfe', 1, 1);
+INSERT INTO artist (id, gid, name, sort_name, type, gender, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day, ended, country) VALUES (1, '994fcd41-2831-4318-9825-66bacbcf2cfe', 1, 1, 1, 1, 1950, 2, 3, 2001, 4, 5, true, 221);
 INSERT INTO artist_gid_redirect (new_id, gid) VALUES (1, 'a934e33f-b3cb-47dd-9638-f7f1f25fe162');
 UPDATE artist SET last_updated = '2012-04-10 14:00:00' WHERE id = 1;
 
@@ -30,7 +64,7 @@ INSERT INTO artist (id, gid, name, sort_name, comment) VALUES (2, '194fcd41-2831
 INSERT INTO artist (id, gid, name, sort_name, comment) VALUES (3, '294fcd41-2831-4318-9825-66bacbcf2cfe', 2, 2, 'Jp');
 
 INSERT INTO artist_name (id, name) VALUES (3, 'Hot Chip');
-INSERT INTO artist (id, gid, name, sort_name) VALUES (4, 'd8915e13-d67a-4aa0-9c0b-1f126af951af', 3, 3);
+INSERT INTO artist (id, gid, name, sort_name, type) VALUES (4, 'd8915e13-d67a-4aa0-9c0b-1f126af951af', 3, 3, 2);
 INSERT INTO artist_credit (id, name, artist_count) VALUES (2, 3, 1);
 INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (2, 4, 1, '', 3);
 
@@ -80,7 +114,7 @@ INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, na
 
 INSERT INTO release_name (id, name) VALUES (4, 'Multi-Disc Extravaganza');
 INSERT INTO release_group (id, artist_credit, gid, name) VALUES (4, 3, 'f94f795c-cd59-4ea2-91c4-b1583c741829', 4);
-INSERT INTO release (id, artist_credit, gid, release_group, name, date_year, date_month, date_day) VALUES (5, 3, '6dfe725f-de93-3b08-b3cb-5971e5bd6eb5', 4, 4, 2011, 07, 23);
+INSERT INTO release (id, artist_credit, gid, release_group, name, date_year, date_month, date_day, country) VALUES (5, 3, '6dfe725f-de93-3b08-b3cb-5971e5bd6eb5', 4, 4, 2011, 07, 23, 73);
 INSERT INTO release_gid_redirect (new_id, gid) VALUES (5, '5d32bacc-d62a-4e77-9f0e-d934e53d5359');
 UPDATE release SET last_updated = '2012-04-10 14:00:00' WHERE id = 5;
 
@@ -91,19 +125,3 @@ INSERT INTO medium (id, tracklist, release, position, name) VALUES (2, 2, 5, 1, 
 UPDATE medium SET last_updated = '2012-04-10 14:00:00' WHERE id = 2;
 INSERT INTO track (id, tracklist, artist_credit, name, position, number, recording) VALUES (4, 2, 2, 2, 2, '2', 2);
 INSERT INTO track (id, tracklist, artist_credit, name, position, number, recording) VALUES (3, 2, 1, 1, 1, '1', 1);
-
--- musicbrainz.release_status
-
-INSERT INTO release_status (id, name) VALUES (1, 'Official');
-INSERT INTO release_status (id, name) VALUES (2, 'Promotion');
-INSERT INTO release_status (id, name) VALUES (3, 'Bootleg');
-INSERT INTO release_status (id, name) VALUES (4, 'Pseudo-Release');
-
--- musicbrainz.release_group_primary_type
-
-INSERT INTO release_group_primary_type (id, name) VALUES (1, 'Album');
-INSERT INTO release_group_primary_type (id, name) VALUES (2, 'Single');
-INSERT INTO release_group_primary_type (id, name) VALUES (3, 'EP');
-INSERT INTO release_group_primary_type (id, name) VALUES (8, 'Audiobook');
-INSERT INTO release_group_primary_type (id, name) VALUES (11, 'Other');
-

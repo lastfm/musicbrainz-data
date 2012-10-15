@@ -1,5 +1,4 @@
 /*
- * Copyright 2012 Last.fm
  * Copyright 2012 Aurélien Mino <aurelien.mino@gmail.com>
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,16 +17,32 @@ package fm.last.musicbrainz.data.model;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Access(AccessType.FIELD)
 @Entity
-@Table(name = "artist_name", schema = "musicbrainz")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-class ArtistName extends AbstractName {
+@Table(name = "country", schema = "musicbrainz")
+class Country {
+
+  @Id
+  @Column(name = "id")
+  private int id;
+
+  @Column(name = "name")
+  private String name;
+
+  @Column(name = "iso_code")
+  private String isoCode;
+
+  public String getName() {
+    return name;
+  }
+
+  public String getIsoCode() {
+    return isoCode;
+  }
 
 }
