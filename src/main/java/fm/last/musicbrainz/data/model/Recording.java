@@ -41,7 +41,7 @@ import com.google.common.collect.Sets;
 @Entity
 @Table(name = "recording", schema = "musicbrainz")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Recording extends CoreEntity<TrackName> {
+public class Recording extends AbstractCoreEntity<TrackName> {
 
   @ElementCollection(fetch = FetchType.LAZY)
   @CollectionTable(name = "recording_gid_redirect", schema = "musicbrainz", joinColumns = @JoinColumn(name = "new_id"))

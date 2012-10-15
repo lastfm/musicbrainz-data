@@ -21,7 +21,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class AbstractName {
+public abstract class AbstractName {
 
   @Id
   @Column(name = "id")

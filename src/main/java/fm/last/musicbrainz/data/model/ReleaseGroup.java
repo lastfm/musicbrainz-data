@@ -41,7 +41,7 @@ import com.google.common.collect.Sets;
 @Entity
 @Table(name = "release_group", schema = "musicbrainz")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class ReleaseGroup extends CoreEntity<ReleaseName> {
+public class ReleaseGroup extends AbstractCoreEntity<ReleaseName> {
 
   @ElementCollection(fetch = FetchType.LAZY)
   @CollectionTable(name = "release_group_gid_redirect", schema = "musicbrainz", joinColumns = @JoinColumn(name = "new_id"))

@@ -49,7 +49,7 @@ import com.google.common.collect.Sets;
 @Entity
 @Table(name = "release", schema = "musicbrainz")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Release extends CoreEntity<ReleaseName> {
+public class Release extends AbstractCoreEntity<ReleaseName> {
 
   @ManyToOne(optional = false, fetch = FetchType.LAZY)
   @JoinColumn(name = "release_group", nullable = false)
