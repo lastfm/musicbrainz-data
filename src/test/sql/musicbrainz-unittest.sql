@@ -6,12 +6,12 @@ DELETE FROM tracklist;
 DELETE FROM recording_gid_redirect;
 DELETE FROM recording;
 DELETE FROM track_name;
+DELETE FROM release_gid_redirect;
+DELETE FROM release;
 DELETE FROM release_group_gid_redirect;
 DELETE FROM release_group;
 DELETE FROM release_group_primary_type;
-DELETE FROM release_gid_redirect;
 DELETE FROM release_status;
-DELETE FROM release;
 DELETE FROM release_group;
 DELETE FROM release_name;
 DELETE FROM artist_credit;
@@ -19,6 +19,23 @@ DELETE FROM artist_credit_name;
 DELETE FROM artist_gid_redirect;
 DELETE FROM artist;
 DELETE FROM artist_name;
+
+-- musicbrainz.release_status
+
+INSERT INTO release_status (id, name) VALUES (1, 'Official');
+INSERT INTO release_status (id, name) VALUES (2, 'Promotion');
+INSERT INTO release_status (id, name) VALUES (3, 'Bootleg');
+INSERT INTO release_status (id, name) VALUES (4, 'Pseudo-Release');
+
+-- musicbrainz.release_group_primary_type
+
+INSERT INTO release_group_primary_type (id, name) VALUES (1, 'Album');
+INSERT INTO release_group_primary_type (id, name) VALUES (2, 'Single');
+INSERT INTO release_group_primary_type (id, name) VALUES (3, 'EP');
+INSERT INTO release_group_primary_type (id, name) VALUES (8, 'Audiobook');
+INSERT INTO release_group_primary_type (id, name) VALUES (11, 'Other');
+
+--
 
 INSERT INTO artist_name (id, name) VALUES (1, 'Q and Not U');
 INSERT INTO artist (id, gid, name, sort_name) VALUES (1, '994fcd41-2831-4318-9825-66bacbcf2cfe', 1, 1);
@@ -37,7 +54,7 @@ INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, na
 INSERT INTO artist_name (id, name) VALUES (4, 'Rick Astley');
 INSERT INTO artist (id, gid, name, sort_name) VALUES (5, 'db92a151-1ac2-438b-bc43-b82e149ddd50', 4, 4);
 INSERT INTO artist_credit (id, name, artist_count) VALUES (1, 4, 1);
-INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (1, 5, 1, null, 4);
+INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (1, 5, 1, '', 4);
 
 INSERT INTO tracklist (id) VALUES (1);
 
@@ -74,7 +91,7 @@ INSERT INTO release (id, artist_credit, gid, release_group, name, date_year, dat
 
 INSERT INTO artist_name (id, name) VALUES (5, 'Mono and Rick Astley feat. Hot Chip');
 INSERT INTO artist_credit (id, name, artist_count) VALUES (3, 5, 3);
-INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (3, 4, 3, null, 3);
+INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (3, 4, 3, '', 3);
 INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (3, 2, 1, ' and ', 2);
 INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (3, 5, 2, ' feat. ', 4);
 
@@ -91,19 +108,3 @@ INSERT INTO medium (id, tracklist, release, position, name) VALUES (2, 2, 5, 1, 
 UPDATE medium SET last_updated = '2012-04-10 14:00:00' WHERE id = 2;
 INSERT INTO track (id, tracklist, artist_credit, name, position, number, recording) VALUES (4, 2, 2, 2, 2, '2', 2);
 INSERT INTO track (id, tracklist, artist_credit, name, position, number, recording) VALUES (3, 2, 1, 1, 1, '1', 1);
-
--- musicbrainz.release_status
-
-INSERT INTO release_status (id, name) VALUES (1, 'Official');
-INSERT INTO release_status (id, name) VALUES (2, 'Promotion');
-INSERT INTO release_status (id, name) VALUES (3, 'Bootleg');
-INSERT INTO release_status (id, name) VALUES (4, 'Pseudo-Release');
-
--- musicbrainz.release_group_primary_type
-
-INSERT INTO release_group_primary_type (id, name) VALUES (1, 'Album');
-INSERT INTO release_group_primary_type (id, name) VALUES (2, 'Single');
-INSERT INTO release_group_primary_type (id, name) VALUES (3, 'EP');
-INSERT INTO release_group_primary_type (id, name) VALUES (8, 'Audiobook');
-INSERT INTO release_group_primary_type (id, name) VALUES (11, 'Other');
-

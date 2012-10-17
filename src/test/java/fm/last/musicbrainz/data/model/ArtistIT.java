@@ -16,8 +16,8 @@
 package fm.last.musicbrainz.data.model;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.isEmptyString;
 import static org.junit.Assert.assertThat;
 
 import java.util.Set;
@@ -40,7 +40,7 @@ public class ArtistIT extends AbstractHibernateModelIT {
     Artist artist = (Artist) session.load(Artist.class, 1);
     assertThat(artist.getId(), is(1));
     assertThat(artist.getName(), is("Q and Not U"));
-    assertThat(artist.getComment(), is(nullValue()));
+    assertThat(artist.getComment(), isEmptyString());
     assertThat(artist.getGids(), is(expectedGids));
     assertThat(artist.getLastUpdated(), is(DateTime.parse("2012-04-10T14:00:00")));
   }

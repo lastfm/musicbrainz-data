@@ -16,8 +16,8 @@
 package fm.last.musicbrainz.data.model;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.isEmptyString;
 import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertThat;
 
@@ -41,7 +41,7 @@ public class ReleaseIT extends AbstractHibernateModelIT {
 
     Release release = (Release) session.load(Release.class, 5);
     assertThat(release.getArtistCredit().getFullName(), is("Mono and Rick Astley feat. Hot Chip"));
-    assertThat(release.getComment(), is(nullValue()));
+    assertThat(release.getComment(), isEmptyString());
     assertThat(release.getGids(), is(expectedGids));
     assertThat(release.getId(), is(5));
     assertThat(release.getLastUpdated(), is(DateTime.parse("2012-04-10T14:00:00")));
