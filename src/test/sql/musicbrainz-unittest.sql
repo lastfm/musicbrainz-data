@@ -1,7 +1,5 @@
 SET search_path = 'musicbrainz';
 
-ALTER TABLE artist DISABLE TRIGGER b_del_artist_special;
-
 DELETE FROM medium;
 DELETE FROM track;
 DELETE FROM tracklist;
@@ -21,14 +19,6 @@ DELETE FROM artist_credit_name;
 DELETE FROM artist_gid_redirect;
 DELETE FROM artist;
 DELETE FROM artist_name;
-
-ALTER TABLE artist ENABLE TRIGGER b_del_artist_special;
-
-ALTER TABLE artist DISABLE TRIGGER b_upd_artist;
-ALTER TABLE recording DISABLE TRIGGER b_upd_recording;
-ALTER TABLE release_group DISABLE TRIGGER b_upd_release_group;
-ALTER TABLE release DISABLE TRIGGER b_upd_release;
-ALTER TABLE medium DISABLE TRIGGER b_upd_medium;
 
 -- musicbrainz.release_status
 
@@ -118,11 +108,3 @@ INSERT INTO medium (id, tracklist, release, position, name) VALUES (2, 2, 5, 1, 
 UPDATE medium SET last_updated = '2012-04-10 14:00:00' WHERE id = 2;
 INSERT INTO track (id, tracklist, artist_credit, name, position, number, recording) VALUES (4, 2, 2, 2, 2, '2', 2);
 INSERT INTO track (id, tracklist, artist_credit, name, position, number, recording) VALUES (3, 2, 1, 1, 1, '1', 1);
-
---
-
-ALTER TABLE artist ENABLE TRIGGER b_upd_artist;
-ALTER TABLE recording ENABLE TRIGGER b_upd_recording;
-ALTER TABLE release_group ENABLE TRIGGER b_upd_release_group;
-ALTER TABLE release ENABLE TRIGGER b_upd_release;
-ALTER TABLE medium ENABLE TRIGGER b_upd_medium;
