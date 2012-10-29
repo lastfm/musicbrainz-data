@@ -1,5 +1,6 @@
 /*
  * Copyright 2012 Last.fm
+ * Copyright 2012 Aurélien Mino <aurelien.mino@gmail.com>
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,9 +18,7 @@ package fm.last.musicbrainz.data.model;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -29,17 +28,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "release_name", catalog = "musicbrainz")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-class ReleaseName {
-
-  @Id
-  @Column(name = "id")
-  private int id;
-
-  @Column(name = "name")
-  private String name;
-
-  public String getName() {
-    return name;
-  }
+class ReleaseName extends AbstractName {
 
 }

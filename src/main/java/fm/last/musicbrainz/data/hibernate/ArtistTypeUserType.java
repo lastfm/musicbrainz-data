@@ -1,5 +1,4 @@
 /*
- * Copyright 2012 Last.fm
  * Copyright 2012 Aurélien Mino <aurelien.mino@gmail.com>
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,20 +13,24 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package fm.last.musicbrainz.data.model;
+package fm.last.musicbrainz.data.hibernate;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import fm.last.musicbrainz.data.model.ArtistType;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+public class ArtistTypeUserType extends AbstractEnumUserType<ArtistType> {
 
-@Access(AccessType.FIELD)
-@Entity
-@Table(name = "artist_name", schema = "musicbrainz")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-class ArtistName extends AbstractName {
+  public ArtistTypeUserType() {
+    super(ArtistType.class);
+  }
+
+  @Override
+  public Integer getIntegerValue(ArtistType type) {
+    return type.getId();
+  }
+
+  @Override
+  public ArtistType getEnumConstant(Integer id) {
+    return ArtistType.valueOf(id);
+  }
 
 }

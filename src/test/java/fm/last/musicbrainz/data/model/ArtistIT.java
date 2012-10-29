@@ -1,5 +1,6 @@
 /*
  * Copyright 2012 Last.fm
+ * Copyright 2012 Aurélien Mino <aurelien.mino@gmail.com>
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +25,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.junit.Test;
 
 import com.google.common.collect.Sets;
@@ -43,11 +45,28 @@ public class ArtistIT extends AbstractHibernateModelIT {
     assertThat(artist.getComment(), isEmptyString());
     assertThat(artist.getGids(), is(expectedGids));
     assertThat(artist.getLastUpdated(), is(DateTime.parse("2012-04-10T14:00:00")));
+    assertThat(artist.getType(), is(ArtistType.PERSON));
+    assertThat(artist.getGender(), is(Gender.MALE));
+    assertThat(artist.getBeginDate().toLocalDate(), is(LocalDate.parse("1950-02-03")));
+    assertThat(artist.getEndDate().toLocalDate(), is(LocalDate.parse("2001-04-05")));
+    assertThat(artist.getCountry().getIsoCode(), is("GB"));
   }
 
   @Test
   public void artistWithoutRedirectedGidsHasOneGid() {
     Artist artist = (Artist) session.load(Artist.class, 3);
     assertThat(artist.getGids(), hasSize(1));
+  }
+
+  @Test
+  public void artistWithoutGenderHasUndefinedGender() {
+    Artist artist = (Artist) session.load(Artist.class, 2);
+    assertThat(artist.getGender(), is(Gender.UNDEFINED));
+  }
+
+  @Test
+  public void artistWithoutTypeHasUndefinedType() {
+    Artist artist = (Artist) session.load(Artist.class, 2);
+    assertThat(artist.getType(), is(ArtistType.UNDEFINED));
   }
 }

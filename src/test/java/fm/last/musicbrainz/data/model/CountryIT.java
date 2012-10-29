@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Last.fm
+ * Copyright 2012 Aurélien Mino <aurelien.mino@gmail.com>
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -15,20 +15,20 @@
  */
 package fm.last.musicbrainz.data.model;
 
-import org.joda.time.DateTime;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
-/**
- * A naive way of handling partial release dates (i.e. data for year, month or day when a release was released is not
- * present).
- */
-enum ReleaseDateFactory {
-  /* */
-  INSTANCE;
+import org.junit.Test;
 
-  public DateTime valueOf(Short year, Short month, Short day) {
-    if (year == null) {
-      return null;
-    }
-    return new DateTime(year, month == null ? 1 : month, day == null ? 1 : day, 0, 0);
+import fm.last.musicbrainz.data.AbstractHibernateModelIT;
+
+public class CountryIT extends AbstractHibernateModelIT {
+
+  @Test
+  public void allFieldsArePopulated() {
+    Country country = (Country) session.load(Country.class, 73);
+    assertThat(country.getName(), is("France"));
+    assertThat(country.getIsoCode(), is("FR"));
   }
+
 }

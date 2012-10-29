@@ -16,18 +16,22 @@
  */
 package fm.last.musicbrainz.data.model;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+@MappedSuperclass
+public abstract class AbstractName {
 
-@Access(AccessType.FIELD)
-@Entity
-@Table(name = "artist_name", schema = "musicbrainz")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-class ArtistName extends AbstractName {
+  @Id
+  @Column(name = "id")
+  private int id;
+
+  @Column(name = "name")
+  private String name;
+
+  public String getName() {
+    return name;
+  }
 
 }
