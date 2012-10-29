@@ -1,6 +1,5 @@
 /*
  * Copyright 2012 Last.fm
- * Copyright 2012 Aurélien Mino <aurelien.mino@gmail.com>
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -76,8 +75,7 @@ public class Release extends AbstractCoreEntity<ReleaseName> {
   @Embedded
   @AttributeOverrides({ @AttributeOverride(name = "year", column = @Column(name = "date_year")),
     @AttributeOverride(name = "month", column = @Column(name = "date_month")),
-    @AttributeOverride(name = "day", column = @Column(name = "date_day"))
-  })
+    @AttributeOverride(name = "day", column = @Column(name = "date_day")) })
   private PartialDate releaseDate;
 
   @ManyToOne

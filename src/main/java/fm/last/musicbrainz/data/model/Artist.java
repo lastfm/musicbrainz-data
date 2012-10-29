@@ -1,6 +1,5 @@
 /*
  * Copyright 2012 Last.fm
- * Copyright 2012 Aurélien Mino <aurelien.mino@gmail.com>
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -63,15 +62,13 @@ public class Artist extends AbstractCoreEntity<ArtistName> {
   @Embedded
   @AttributeOverrides({ @AttributeOverride(name = "year", column = @Column(name = "begin_date_year")),
     @AttributeOverride(name = "month", column = @Column(name = "begin_date_month")),
-    @AttributeOverride(name = "day", column = @Column(name = "begin_date_day"))
-  })
+    @AttributeOverride(name = "day", column = @Column(name = "begin_date_day")) })
   private PartialDate beginDate;
 
   @Embedded
   @AttributeOverrides({ @AttributeOverride(name = "year", column = @Column(name = "end_date_year")),
     @AttributeOverride(name = "month", column = @Column(name = "end_date_month")),
-    @AttributeOverride(name = "day", column = @Column(name = "end_date_day"))
-  })
+    @AttributeOverride(name = "day", column = @Column(name = "end_date_day")) })
   private PartialDate endDate;
 
   @ManyToOne
