@@ -1,4 +1,6 @@
 TBA
+- Added support for artist gender, artist type, and artist begin and end dates (Thanks @murdos).
+- Improved representation of partial dates (Thanks @murdos).
 - Simplified implementation of ArtistCredit#getFullName() as artist_credit_name.join_phrase cannot be null 
   after 2012-10-15 schema change.
 

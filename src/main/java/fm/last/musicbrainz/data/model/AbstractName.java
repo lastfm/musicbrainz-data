@@ -1,6 +1,4 @@
 /*
- * Copyright 2012 Last.fm
- *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -13,22 +11,24 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package fm.last.musicbrainz.data.dao;
+package fm.last.musicbrainz.data.model;
 
-import java.util.UUID;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
-interface MusicBrainzDao<T> {
+@MappedSuperclass
+abstract class AbstractName {
 
-  /**
-   * @return Null if no entity with {@code id} exists
-   */
-  T getById(int id);
+  @Id
+  @Column(name = "id")
+  private int id;
 
-  /**
-   * Finds an entity by canonical GID or redirected GID.
-   * 
-   * @return Null if no entity with associated {@code gid} exists
-   */
-  T getByGid(UUID gid);
+  @Column(name = "name")
+  private String name;
+
+  public String getName() {
+    return name;
+  }
 
 }

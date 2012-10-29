@@ -45,11 +45,7 @@ public class ArtistCredit {
 
   @OneToMany(targetEntity = ArtistCreditName.class, fetch = FetchType.LAZY, mappedBy = "artistCredit", orphanRemoval = true)
   @OrderBy("position")
-  private final List<ArtistCreditName> artistCreditNames;
-
-  public ArtistCredit() {
-    artistCreditNames = Lists.newArrayList();
-  }
+  private final List<ArtistCreditName> artistCreditNames = Lists.newArrayList();
 
   public int getId() {
     return id;

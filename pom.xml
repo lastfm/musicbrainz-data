@@ -37,7 +37,6 @@
       <email>stefan.sperber@gmail.com</email>
       <url>http://www.stefansperber.com</url>
       <roles>
-        <role>Documentation</role>
         <role>Java Developer</role>
       </roles>
       <organization>Last.fm</organization>
@@ -52,6 +51,14 @@
       </roles>
       <organization>MusicBrainz</organization>
       <organizationUrl>http://www.musicbrainz.org/</organizationUrl>
+    </developer>
+    <developer>
+      <name>Aurélien Mino</name>
+      <email>aurelien.mino@gmail.com</email>
+      <url>http://github.com/murdos</url>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
     </developer>
   </developers>
 

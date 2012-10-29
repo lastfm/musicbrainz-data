@@ -26,6 +26,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.junit.Test;
 
 import com.google.common.collect.Sets;
@@ -47,9 +48,10 @@ public class ReleaseIT extends AbstractHibernateModelIT {
     assertThat(release.getLastUpdated(), is(DateTime.parse("2012-04-10T14:00:00")));
     assertThat(release.getName(), is("Multi-Disc Extravaganza"));
     assertThat(release.getMediums(), hasSize(2));
-    assertThat(release.getReleaseDate(), is(DateTime.parse("2011-07-23")));
+    assertThat(release.getReleaseDate().toLocalDate(), is(LocalDate.parse("2011-07-23")));
     assertThat(release.getStatus(), is(ReleaseStatus.UNDEFINED));
     assertThat(release.getReleaseGroup().getId(), is(4));
+    assertThat(release.getCountry().getIsoCode(), is("FR"));
   }
 
   @Test

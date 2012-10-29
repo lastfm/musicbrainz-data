@@ -1,6 +1,4 @@
 /*
- * Copyright 2012 Last.fm
- *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -13,22 +11,24 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package fm.last.musicbrainz.data.model;
+package fm.last.musicbrainz.data.hibernate;
 
-import org.joda.time.DateTime;
+import fm.last.musicbrainz.data.model.ArtistType;
 
-/**
- * A naive way of handling partial release dates (i.e. data for year, month or day when a release was released is not
- * present).
- */
-enum ReleaseDateFactory {
-  /* */
-  INSTANCE;
+public class ArtistTypeUserType extends AbstractEnumUserType<ArtistType> {
 
-  public DateTime valueOf(Short year, Short month, Short day) {
-    if (year == null) {
-      return null;
-    }
-    return new DateTime(year, month == null ? 1 : month, day == null ? 1 : day, 0, 0);
+  public ArtistTypeUserType() {
+    super(ArtistType.class);
   }
+
+  @Override
+  public Integer getIntegerValue(ArtistType type) {
+    return type.getId();
+  }
+
+  @Override
+  public ArtistType getEnumConstant(Integer id) {
+    return ArtistType.valueOf(id);
+  }
+
 }

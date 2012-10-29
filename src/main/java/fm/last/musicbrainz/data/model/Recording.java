@@ -25,7 +25,6 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -33,7 +32,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
@@ -42,25 +40,13 @@ import com.google.common.collect.Sets;
 @Entity
 @Table(name = "recording", schema = "musicbrainz")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Recording {
-
-  @Id
-  @Column(name = "id")
-  private int id;
-
-  @Column(name = "gid", nullable = false, unique = true)
-  @Type(type = "pg-uuid")
-  private UUID gid;
+public class Recording extends AbstractCoreEntity<TrackName> {
 
   @ElementCollection(fetch = FetchType.LAZY)
   @CollectionTable(name = "recording_gid_redirect", schema = "musicbrainz", joinColumns = @JoinColumn(name = "new_id"))
   @Column(name = "gid")
   @Type(type = "pg-uuid")
-  private final Set<UUID> redirectedGids;
-
-  @ManyToOne(optional = false, fetch = FetchType.EAGER)
-  @JoinColumn(name = "name")
-  private TrackName name;
+  private final Set<UUID> redirectedGids = Sets.newHashSet();
 
   @ManyToOne(optional = false, fetch = FetchType.LAZY)
   @JoinColumn(name = "artist_credit", nullable = true)
@@ -69,35 +55,8 @@ public class Recording {
   @Column(name = "length")
   private Integer length;
 
-  @Column(name = "comment")
-  private String comment;
-
-  @Column(name = "last_updated")
-  @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
-  private DateTime lastUpdated;
-
-  public Recording() {
-    redirectedGids = Sets.newHashSet();
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name.getName();
-  }
-
   public ArtistCredit getArtistCredit() {
     return artistCredit;
-  }
-
-  public String getComment() {
-    return comment;
-  }
-
-  public DateTime getLastUpdated() {
-    return lastUpdated;
   }
 
   /**

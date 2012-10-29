@@ -1,6 +1,4 @@
 /*
- * Copyright 2012 Last.fm
- *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -16,29 +14,19 @@
 package fm.last.musicbrainz.data.model;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
-import org.joda.time.DateTime;
 import org.junit.Test;
 
-public class ReleaseDateFactoryTest {
+import fm.last.musicbrainz.data.AbstractHibernateModelIT;
 
-  private final ReleaseDateFactory factory = ReleaseDateFactory.INSTANCE;
-
-  @Test
-  public void yearIsNullReturnsNullReleaseDate() {
-    assertThat(factory.valueOf(null, (short) 10, (short) 5), is(nullValue()));
-  }
+public class CountryIT extends AbstractHibernateModelIT {
 
   @Test
-  public void monthIsNullReturnsReleaseDateFromJanuary() {
-    assertThat(factory.valueOf((short) 2011, null, (short) 5), is(DateTime.parse("2011-01-05")));
-  }
-
-  @Test
-  public void dayIsNullReturnsReleaseDateFromFirstOfMonth() {
-    assertThat(factory.valueOf((short) 2011, (short) 5, null), is(DateTime.parse("2011-05-01")));
+  public void allFieldsArePopulated() {
+    Country country = (Country) session.load(Country.class, 73);
+    assertThat(country.getName(), is("France"));
+    assertThat(country.getIsoCode(), is("FR"));
   }
 
 }
