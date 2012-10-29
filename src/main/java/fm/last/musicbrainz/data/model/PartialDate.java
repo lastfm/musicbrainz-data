@@ -72,10 +72,6 @@ public class PartialDate implements Comparable<PartialDate> {
     this.day = day;
   }
 
-  /**
-   * A naive way of handling partial release dates (i.e. data for year, month or day when a release was released is not
-   * present).
-   */
   public LocalDate toLocalDate() {
     if (year == null) {
       return null;
