@@ -47,7 +47,7 @@ public enum Gender {
   public static Gender valueOf(Integer id) {
     Gender type = idToType.get(id);
     if (type == null) {
-      throw new IllegalArgumentException("Unrecognized artist genre: " + id);
+      throw new IllegalArgumentException("Unrecognized artist gender: " + id);
     }
     return type;
   }

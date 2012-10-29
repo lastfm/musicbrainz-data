@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @Access(AccessType.FIELD)
 @Entity
 @Table(name = "country", schema = "musicbrainz")
-class Country {
+public class Country {
 
   @Id
   @Column(name = "id")

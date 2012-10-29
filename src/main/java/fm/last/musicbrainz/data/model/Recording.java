@@ -46,7 +46,7 @@ public class Recording extends AbstractCoreEntity<TrackName> {
   @CollectionTable(name = "recording_gid_redirect", schema = "musicbrainz", joinColumns = @JoinColumn(name = "new_id"))
   @Column(name = "gid")
   @Type(type = "pg-uuid")
-  private final Set<UUID> redirectedGids;
+  private final Set<UUID> redirectedGids = Sets.newHashSet();
 
   @ManyToOne(optional = false, fetch = FetchType.LAZY)
   @JoinColumn(name = "artist_credit", nullable = true)
@@ -54,10 +54,6 @@ public class Recording extends AbstractCoreEntity<TrackName> {
 
   @Column(name = "length")
   private Integer length;
-
-  public Recording() {
-    redirectedGids = Sets.newHashSet();
-  }
 
   public ArtistCredit getArtistCredit() {
     return artistCredit;

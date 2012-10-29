@@ -1,6 +1,4 @@
 /*
- * Copyright 2012 Last.fm
- *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -20,7 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class AbstractName {
+abstract class AbstractName {
 
   @Id
   @Column(name = "id")

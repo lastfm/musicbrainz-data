@@ -58,7 +58,7 @@ public class Release extends AbstractCoreEntity<ReleaseName> {
   @CollectionTable(name = "release_gid_redirect", schema = "musicbrainz", joinColumns = @JoinColumn(name = "new_id"))
   @Column(name = "gid")
   @Type(type = "pg-uuid")
-  private final Set<UUID> redirectedGids;
+  private final Set<UUID> redirectedGids = Sets.newHashSet();
 
   @ManyToOne(targetEntity = ArtistCredit.class, fetch = FetchType.LAZY)
   @JoinColumn(name = "artist_credit", nullable = true)
@@ -66,7 +66,7 @@ public class Release extends AbstractCoreEntity<ReleaseName> {
 
   @OneToMany(targetEntity = Medium.class, fetch = FetchType.LAZY, mappedBy = "release", orphanRemoval = true)
   @OrderBy("position")
-  private final List<Medium> mediums;
+  private final List<Medium> mediums = Lists.newArrayList();
 
   @Column(name = "status")
   @Type(type = "fm.last.musicbrainz.data.hibernate.ReleaseStatusUserType")
@@ -81,11 +81,6 @@ public class Release extends AbstractCoreEntity<ReleaseName> {
   @ManyToOne
   @JoinColumn(name = "country")
   private Country country;
-
-  public Release() {
-    redirectedGids = Sets.newHashSet();
-    mediums = Lists.newArrayList();
-  }
 
   public ArtistCredit getArtistCredit() {
     return artistCredit;

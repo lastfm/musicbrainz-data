@@ -47,11 +47,7 @@ class TrackList {
   @OneToMany(targetEntity = Track.class, fetch = FetchType.LAZY)
   @JoinColumn(name = "tracklist")
   @OrderBy("position")
-  private final List<Track> tracks;
-
-  public TrackList() {
-    tracks = Lists.newArrayList();
-  }
+  private final List<Track> tracks = Lists.newArrayList();
 
   public List<Track> getTracks() {
     return Collections.unmodifiableList(tracks);

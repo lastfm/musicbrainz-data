@@ -46,7 +46,7 @@ public class ReleaseGroup extends AbstractCoreEntity<ReleaseName> {
   @CollectionTable(name = "release_group_gid_redirect", schema = "musicbrainz", joinColumns = @JoinColumn(name = "new_id"))
   @Column(name = "gid")
   @Type(type = "pg-uuid")
-  private final Set<UUID> redirectedGids;
+  private final Set<UUID> redirectedGids = Sets.newHashSet();
 
   @ManyToOne(targetEntity = ArtistCredit.class, fetch = FetchType.LAZY)
   @JoinColumn(name = "artist_credit", nullable = true)
@@ -55,10 +55,6 @@ public class ReleaseGroup extends AbstractCoreEntity<ReleaseName> {
   @Column(name = "type")
   @Type(type = "fm.last.musicbrainz.data.hibernate.ReleaseGroupPrimaryTypeUserType")
   private ReleaseGroupPrimaryType type;
-
-  public ReleaseGroup() {
-    redirectedGids = Sets.newHashSet();
-  }
 
   public ArtistCredit getArtistCredit() {
     return artistCredit;

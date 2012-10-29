@@ -28,7 +28,7 @@ import fm.last.musicbrainz.data.model.Track;
 @Transactional("musicBrainzTransactionManager")
 public class TrackDaoImpl extends AbstractMusicBrainzHibernateDao<Track> implements TrackDao {
 
-  protected TrackDaoImpl() {
+  public TrackDaoImpl() {
     super(Track.class);
   }
 

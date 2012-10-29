@@ -49,7 +49,7 @@ public class Artist extends AbstractCoreEntity<ArtistName> {
   @CollectionTable(name = "artist_gid_redirect", schema = "musicbrainz", joinColumns = @JoinColumn(name = "new_id"))
   @Column(name = "gid")
   @Type(type = "pg-uuid")
-  private final Set<UUID> redirectedGids;
+  private final Set<UUID> redirectedGids = Sets.newHashSet();
 
   @Column(name = "type")
   @Type(type = "fm.last.musicbrainz.data.hibernate.ArtistTypeUserType")
@@ -74,10 +74,6 @@ public class Artist extends AbstractCoreEntity<ArtistName> {
   @ManyToOne
   @JoinColumn(name = "country")
   private Country country;
-
-  public Artist() {
-    redirectedGids = Sets.newHashSet();
-  }
 
   public ArtistType getType() {
     return type;
