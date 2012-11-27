@@ -1,4 +1,5 @@
 TBA
+- Migrated project to lastfm-oss-parent.
 
 2.0.0 (2012-10-29)
 - Added support for artist gender, artist type, and artist begin and end dates (Thanks @murdos).
