@@ -55,6 +55,10 @@ public class Artist extends AbstractCoreEntity<ArtistName> {
   @Type(type = "fm.last.musicbrainz.data.hibernate.ArtistTypeUserType")
   private ArtistType type;
 
+  @ManyToOne(optional = true, fetch = FetchType.LAZY)
+  @JoinColumn(name = "area", nullable = false)
+  private Area area;
+
   @Column(name = "gender")
   @Type(type = "fm.last.musicbrainz.data.hibernate.GenderUserType")
   private Gender gender;
@@ -71,16 +75,39 @@ public class Artist extends AbstractCoreEntity<ArtistName> {
     @AttributeOverride(name = "day", column = @Column(name = "end_date_day")) })
   private PartialDate endDate;
 
-  @ManyToOne
-  @JoinColumn(name = "country")
-  private Country country;
+  @Column(name = "ended")
+  private boolean ended;
+
+  @ManyToOne(optional = true, fetch = FetchType.LAZY)
+  @JoinColumn(name = "begin_area", nullable = false)
+  private Area beginArea;
+
+  @ManyToOne(optional = true, fetch = FetchType.LAZY)
+  @JoinColumn(name = "end_area", nullable = false)
+  private Area endArea;
 
   public ArtistType getType() {
     return type;
   }
 
+  public Area getArea() {
+    return area;
+  }
+
+  public Area getBeginArea() {
+    return beginArea;
+  }
+
+  public Area getEndArea() {
+    return endArea;
+  }
+
   public Gender getGender() {
     return gender;
+  }
+
+  public boolean hasEnded() {
+    return ended;
   }
 
   /**
@@ -98,7 +125,4 @@ public class Artist extends AbstractCoreEntity<ArtistName> {
     return endDate;
   }
 
-  public Country getCountry() {
-    return country;
-  }
 }

@@ -16,8 +16,8 @@
 package fm.last.musicbrainz.data.model;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.isEmptyString;
 import static org.junit.Assert.assertThat;
 
 import java.util.Set;
@@ -41,14 +41,31 @@ public class ArtistIT extends AbstractHibernateModelIT {
     Artist artist = (Artist) session.load(Artist.class, 1);
     assertThat(artist.getId(), is(1));
     assertThat(artist.getName(), is("Q and Not U"));
-    assertThat(artist.getComment(), isEmptyString());
+    assertThat(artist.getComment(), is("Soft Pyramids"));
     assertThat(artist.getGids(), is(expectedGids));
     assertThat(artist.getLastUpdated(), is(DateTime.parse("2012-04-10T14:00:00")));
-    assertThat(artist.getType(), is(ArtistType.PERSON));
-    assertThat(artist.getGender(), is(Gender.MALE));
+    assertThat(artist.getType(), is(ArtistType.UNDEFINED));
+    assertThat(artist.getGender(), is(Gender.UNDEFINED));
     assertThat(artist.getBeginDate().toLocalDate(), is(LocalDate.parse("1950-02-03")));
     assertThat(artist.getEndDate().toLocalDate(), is(LocalDate.parse("2001-04-05")));
-    assertThat(artist.getCountry().getIsoCode(), is("GB"));
+    assertThat(artist.getArea().getName(), is("Tokyo"));
+    assertThat(artist.getBeginArea().getName(), is("South Korea"));
+    assertThat(artist.getEndArea().getName(), is("Netherlands Antilles"));
+  }
+
+  @Test
+  public void areasAreNullWhenNotSpecified() {
+    Artist artist = (Artist) session.load(Artist.class, 5);
+    assertThat(artist.getArea(), is(nullValue()));
+    assertThat(artist.getBeginArea(), is(nullValue()));
+    assertThat(artist.getEndArea(), is(nullValue()));
+  }
+
+  @Test
+  public void beginAndEndDateAreNullWhenNotSpecified() {
+    Artist artist = (Artist) session.load(Artist.class, 5);
+    assertThat(artist.getBeginDate(), is(nullValue()));
+    assertThat(artist.getEndDate(), is(nullValue()));
   }
 
   @Test
@@ -58,14 +75,14 @@ public class ArtistIT extends AbstractHibernateModelIT {
   }
 
   @Test
-  public void artistWithoutGenderHasUndefinedGender() {
-    Artist artist = (Artist) session.load(Artist.class, 2);
-    assertThat(artist.getGender(), is(Gender.UNDEFINED));
+  public void genderIsNotUndefinedWhenSpecified() {
+    Artist artist = (Artist) session.load(Artist.class, 5);
+    assertThat(artist.getGender(), is(Gender.MALE));
   }
 
   @Test
-  public void artistWithoutTypeHasUndefinedType() {
-    Artist artist = (Artist) session.load(Artist.class, 2);
-    assertThat(artist.getType(), is(ArtistType.UNDEFINED));
+  public void artistTypeIsNotUndefinedWhenSpecified() {
+    Artist artist = (Artist) session.load(Artist.class, 5);
+    assertThat(artist.getType(), is(ArtistType.PERSON));
   }
 }
