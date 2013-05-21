@@ -57,16 +57,12 @@ INSERT INTO area_type (id, name) VALUES (2, 'Subdivision');
 
 -- musicbrainz.area
 
-INSERT INTO area (id, gid, name, sort_name, type, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day) 
-VALUES (1178, 'f03d09b3-39dc-4083-afd6-159e3f0d462f', 'London', 'London', null, null, null, null, null, null, null);
-INSERT INTO area (id, gid, name, sort_name, type, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day) 
-VALUES (397, '8dc97297-ac95-4d33-82bc-e07fab26fb5f', 'Tokyo', 'Tokyo', 2, null, null, null, null, null, null);
+INSERT INTO area (id, gid, name, sort_name, type, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day) VALUES (1178, 'f03d09b3-39dc-4083-afd6-159e3f0d462f', 'London', 'London', null, null, null, null, null, null, null);
+INSERT INTO area (id, gid, name, sort_name, type, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day) VALUES (397, '8dc97297-ac95-4d33-82bc-e07fab26fb5f', 'Tokyo', 'Tokyo', 2, null, null, null, null, null, null);
 
-INSERT INTO area (id, gid, name, sort_name, type, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day, ended) 
-VALUES (151, 'c741c28e-cbec-3977-88c8-583a8af62522', 'Netherlands Antilles', 'Netherlands Antilles', 1, 1954, 9, 12, 2010, null, null, true);
-INSERT INTO area (id, gid, name, sort_name, type, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day) 
-VALUES (113, 'b9f7d640-46e8-313e-b158-ded6d18593b3', 'South Korea', 'South Korea', 1, null, null, null, null, null, null);
-INSERT INTO area_gid_redirect (new_id, gid) VALUES (113, '6b43e5f2-49e8-46ce-94cb-a9b23e5bb4e8');
+INSERT INTO area (id, gid, name, sort_name, type, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day, ended) VALUES (151, 'c741c28e-cbec-3977-88c8-583a8af62522', 'Netherlands Antilles', 'Netherlands Antilles', 1, 1954, 9, 12, 2010, 12, 9, true);
+INSERT INTO area_gid_redirect (new_id, gid) VALUES (151, '6b43e5f2-49e8-46ce-94cb-a9b23e5bb4e8');
+INSERT INTO area (id, gid, name, sort_name, type, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day) VALUES (113, 'b9f7d640-46e8-313e-b158-ded6d18593b3', 'South Korea', 'South Korea', 1, null, null, null, null, null, null);
 
 UPDATE area SET last_updated = '2013-05-19 20:23:54' WHERE id = 1178;
 UPDATE area SET last_updated = '2013-05-15 16:49:41' WHERE id = 151;
@@ -74,8 +70,7 @@ UPDATE area SET last_updated = '2013-05-15 16:49:41' WHERE id = 151;
 --
 
 INSERT INTO artist_name (id, name) VALUES (1, 'Q and Not U');
-INSERT INTO artist (id, gid, name, sort_name, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day, type, area, gender, comment, ended, begin_area, end_area) 
-VALUES (1, '994fcd41-2831-4318-9825-66bacbcf2cfe', 1, 1, 1950, 2, 3, 2001, 4, 5, 2, 1178, 3, 'Soft Pyramids', true, 151, 113);
+INSERT INTO artist (id, gid, name, sort_name, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day, type, area, gender, comment, ended, begin_area, end_area) VALUES (1, '994fcd41-2831-4318-9825-66bacbcf2cfe', 1, 1, 1950, 2, 3, 2001, 4, 5, 2, 1178, 3, 'Soft Pyramids', true, 151, 113);
 INSERT INTO artist_gid_redirect (new_id, gid) VALUES (1, 'a934e33f-b3cb-47dd-9638-f7f1f25fe162');
 UPDATE artist SET last_updated = '2012-04-10 14:00:00' WHERE id = 1;
 
@@ -139,7 +134,5 @@ UPDATE release SET last_updated = '2012-04-10 14:00:00' WHERE id = 5;
 INSERT INTO medium (id, release, position) VALUES (3, 5, 2);
 INSERT INTO medium (id, release, position, name) VALUES (2, 5, 1, 'Disc 1');
 UPDATE medium SET last_updated = '2012-04-10 14:00:00' WHERE id = 2;
-INSERT INTO track (id, gid, recording, medium, position, number, name, artist_credit, length) 
-VALUES (4, '9324fa33-3f60-3f63-80b9-02a5134a5dd9', 2, 2, 2, '2', 2, 2, 177760);
-INSERT INTO track (id, gid, recording, medium, position, number, name, artist_credit, length) 
-VALUES (3, '3c22f2da-6c1e-3f0a-baba-4147fede5eae', 1, 2, 1, '1', 1, 1, 254160); 
+INSERT INTO track (id, gid, recording, medium, position, number, name, artist_credit, length) VALUES (4, '9324fa33-3f60-3f63-80b9-02a5134a5dd9', 2, 2, 2, '2', 2, 2, 177760);
+INSERT INTO track (id, gid, recording, medium, position, number, name, artist_credit, length) VALUES (3, '3c22f2da-6c1e-3f0a-baba-4147fede5eae', 1, 2, 1, '1', 1, 1, 254160); 

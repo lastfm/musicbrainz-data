@@ -13,36 +13,24 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package fm.last.musicbrainz.data.model;
+package fm.last.musicbrainz.data.hibernate;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import fm.last.musicbrainz.data.model.AreaType;
 
-@Access(AccessType.FIELD)
-@Entity
-@Table(name = "country", schema = "musicbrainz")
-public class Country {
+public class AreaTypeUserType extends AbstractEnumUserType<AreaType> {
 
-  @Id
-  @Column(name = "id")
-  private int id;
-
-  @Column(name = "name")
-  private String name;
-
-  @Column(name = "iso_code")
-  private String isoCode;
-
-  public String getName() {
-    return name;
+  public AreaTypeUserType() {
+    super(AreaType.class);
   }
 
-  public String getIsoCode() {
-    return isoCode;
+  @Override
+  public Integer getIntegerValue(AreaType type) {
+    return type.getId();
+  }
+
+  @Override
+  public AreaType getEnumConstant(Integer id) {
+    return AreaType.valueOf(id);
   }
 
 }
