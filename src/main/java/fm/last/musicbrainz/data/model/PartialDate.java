@@ -87,10 +87,8 @@ public class PartialDate implements Comparable<PartialDate> {
       PartialDate other = (PartialDate) obj;
       return Objects.equal(year, other.getYear()) && Objects.equal(month, other.getMonth())
           && Objects.equal(day, other.getDay());
-    } else {
-      return false;
     }
-
+    return false;
   }
 
   @Override
@@ -104,7 +102,7 @@ public class PartialDate implements Comparable<PartialDate> {
       return "";
     }
     String separator = "-";
-    StringBuffer sb = new StringBuffer(year);
+    StringBuilder sb = new StringBuilder(year);
     sb.append(String.format("%04d", year));
     if (month != null) {
       sb.append(separator).append(String.format("%02d", month));

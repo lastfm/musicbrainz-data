@@ -15,6 +15,7 @@
  */
 package fm.last.musicbrainz.data.model;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Access;
@@ -24,7 +25,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -57,10 +57,6 @@ public class Medium {
   @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
   private DateTime lastUpdated;
 
-  @ManyToOne(targetEntity = TrackList.class, fetch = FetchType.EAGER)
-  @JoinColumn(name = "tracklist")
-  private TrackList trackList;
-
   public int getId() {
     return id;
   }
@@ -87,7 +83,7 @@ public class Medium {
    * @return Empty list if medium has no {@link Track}s
    */
   public List<Track> getTracks() {
-    return trackList.getTracks();
+    return Collections.emptyList();
   }
 
 }

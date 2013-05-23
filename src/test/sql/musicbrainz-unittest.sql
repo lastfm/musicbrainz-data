@@ -12,6 +12,8 @@ DELETE FROM release_group;
 DELETE FROM release_name;
 DELETE FROM release_group_primary_type;
 DELETE FROM release_status;
+DELETE FROM release_unknown_country;
+DELETE FROM release_country;
 DELETE FROM artist_credit;
 DELETE FROM artist_credit_name;
 DELETE FROM artist_gid_redirect;
@@ -116,6 +118,8 @@ INSERT INTO release (id, artist_credit, gid, release_group, name) VALUES (3, 2, 
 INSERT INTO release_name (id, name) VALUES (3, 'One Life Stand');
 INSERT INTO release_group (id, artist_credit, gid, name) VALUES (3, 2, 'e83f684b-bc49-4ea2-91c4-b1583c741829', 3);
 INSERT INTO release (id, artist_credit, gid, release_group, name, status) VALUES (4, 2, '5ced615f-cd92-3b08-b3cb-5971e5bd6eb5', 3, 3, 1);
+INSERT INTO release_country (release, country, date_year, date_month, date_day) VALUES (4, 151, null, 7, 23);
+INSERT INTO release_country (release, country, date_year, date_month, date_day) VALUES (4, 113, 2010, 7, 23);
 
 -- for unit testing ArtistCredit, Medium
 
@@ -129,6 +133,7 @@ INSERT INTO release_name (id, name) VALUES (4, 'Multi-Disc Extravaganza');
 INSERT INTO release_group (id, artist_credit, gid, name) VALUES (4, 3, 'f94f795c-cd59-4ea2-91c4-b1583c741829', 4);
 INSERT INTO release (id, artist_credit, gid, release_group, name) VALUES (5, 3, '6dfe725f-de93-3b08-b3cb-5971e5bd6eb5', 4, 4);
 INSERT INTO release_gid_redirect (new_id, gid) VALUES (5, '5d32bacc-d62a-4e77-9f0e-d934e53d5359');
+INSERT INTO release_unknown_country (release, date_year, date_month, date_day) VALUES (5, 2011, 7, 23);
 UPDATE release SET last_updated = '2012-04-10 14:00:00' WHERE id = 5;
 
 INSERT INTO medium (id, release, position) VALUES (3, 5, 2);

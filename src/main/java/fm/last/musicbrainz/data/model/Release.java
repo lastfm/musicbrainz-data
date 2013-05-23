@@ -22,17 +22,15 @@ import java.util.UUID;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
@@ -72,15 +70,12 @@ public class Release extends AbstractCoreEntity<ReleaseName> {
   @Type(type = "fm.last.musicbrainz.data.hibernate.ReleaseStatusUserType")
   private ReleaseStatus status;
 
-  @Embedded
-  @AttributeOverrides({ @AttributeOverride(name = "year", column = @Column(name = "date_year")),
-    @AttributeOverride(name = "month", column = @Column(name = "date_month")),
-    @AttributeOverride(name = "day", column = @Column(name = "date_day")) })
-  private PartialDate releaseDate;
+  @OneToOne(fetch = FetchType.LAZY, optional = true)
+  @JoinColumn(name = "id", referencedColumnName = "release", nullable = true)
+  private ReleaseUnknownCountry releaseUnknownCountry;
 
-  @ManyToOne
-  @JoinColumn(name = "country")
-  private Country country;
+  @OneToMany(targetEntity = ReleaseCountry.class, fetch = FetchType.LAZY, mappedBy = "release", orphanRemoval = true)
+  private final Set<ReleaseCountry> releaseCountries = Sets.newHashSet();
 
   public ArtistCredit getArtistCredit() {
     return artistCredit;
@@ -100,10 +95,6 @@ public class Release extends AbstractCoreEntity<ReleaseName> {
     return new ImmutableSet.Builder<UUID>().addAll(redirectedGids).add(gid).build();
   }
 
-  public PartialDate getReleaseDate() {
-    return releaseDate;
-  }
-
   public ReleaseStatus getStatus() {
     return status;
   }
@@ -112,8 +103,18 @@ public class Release extends AbstractCoreEntity<ReleaseName> {
     return releaseGroup;
   }
 
-  public Country getCountry() {
-    return country;
+  public PartialDate getReleaseDateForUnknownCountry() {
+    if (releaseUnknownCountry == null) {
+      return null;
+    }
+    return releaseUnknownCountry.getReleaseDate();
+  }
+
+  /**
+   * Returns and immutable set of {@link ReleaseCountry}.
+   */
+  public Set<ReleaseCountry> getReleaseCountries() {
+    return Collections.unmodifiableSet(releaseCountries);
   }
 
 }
