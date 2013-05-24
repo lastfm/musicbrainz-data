@@ -25,13 +25,17 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+
+import com.google.common.collect.Lists;
 
 @Access(AccessType.FIELD)
 @Entity
@@ -48,7 +52,7 @@ public class Medium {
   private Release release;
 
   @Column(name = "position")
-  private Integer position;
+  private int position;
 
   @Column(name = "name")
   private String name;
@@ -56,6 +60,11 @@ public class Medium {
   @Column(name = "last_updated")
   @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
   private DateTime lastUpdated;
+
+  @OneToMany(targetEntity = Track.class, fetch = FetchType.LAZY)
+  @JoinColumn(name = "medium")
+  @OrderBy("position")
+  private final List<Track> tracks = Lists.newArrayList();
 
   public int getId() {
     return id;
@@ -65,7 +74,7 @@ public class Medium {
     return release;
   }
 
-  public Integer getPosition() {
+  public int getPosition() {
     return position;
   }
 
@@ -83,7 +92,7 @@ public class Medium {
    * @return Empty list if medium has no {@link Track}s
    */
   public List<Track> getTracks() {
-    return Collections.emptyList();
+    return Collections.unmodifiableList(tracks);
   }
 
 }
