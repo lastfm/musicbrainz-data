@@ -16,7 +16,9 @@
 package fm.last.musicbrainz.data.dao.impl;
 
 import java.util.List;
+import java.util.UUID;
 
+import org.hibernate.type.PostgresUUIDType;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,10 +35,31 @@ public class TrackDaoImpl extends AbstractMusicBrainzHibernateDao<Track> impleme
   }
 
   @Override
+  public Track getById(int id) {
+    return get(id);
+  }
+
+  @Override
+  public Track getByGid(UUID gid) {
+    return uniqueResult(query(
+        "from " + Track.class.getSimpleName() + " track left outer join track.redirectedGids gids"
+            + " where track.gid = :gid or :gid in (gids)").setParameter("gid", gid, PostgresUUIDType.INSTANCE));
+  }
+
+  @Override
   public List<Track> getByArtist(Artist musicBrainzArtist) {
     return list(query(
         "select track from " + Track.class.getSimpleName()
             + " track join track.artistCredit.artistCreditNames artistCreditNames"
             + " where artistCreditNames.artist.id = :artist").setInteger("artist", musicBrainzArtist.getId()));
+  }
+
+  @Override
+  public List<Track> getByArtistAndName(Artist artist, String trackName) {
+    return list(query(
+        "select track from " + Track.class.getName()
+            + " track join track.artistCredit.artistCreditNames artistCreditNames"
+            + " where artistCreditNames.artist.id = :artistId and upper(track.name.name) = upper(:name)").setInteger(
+        "artistId", artist.getId()).setString("name", trackName));
   }
 }

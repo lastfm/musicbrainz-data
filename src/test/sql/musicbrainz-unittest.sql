@@ -96,6 +96,7 @@ INSERT INTO recording (id, artist_credit, gid, name, length) VALUES (1, 1, '4ea1
 INSERT INTO recording_gid_redirect (new_id, gid) VALUES (1, '6a27908d-9663-4e61-9ef3-e8b82c31dc14');
 UPDATE recording SET last_updated = '2012-04-10 14:00:00' WHERE id = 1;
 INSERT INTO track (id, gid, medium, artist_credit, name, position, number, recording) VALUES (1, '70c4bd53-f3ef-354f-97a9-7ed76915087a', 1, 1, 1, 1, '1', 1);
+INSERT INTO track_gid_redirect (new_id, gid) VALUES (1, '8f64df73-562c-4145-a9db-9736a3f04c27');
 
 INSERT INTO track_name (id, name) VALUES (2, 'The Sinner');
 INSERT INTO recording (id, artist_credit, gid, name) VALUES (2, 1, '2ea1383f-aca7-4a39-9839-576cf3af438b', 2);
@@ -140,6 +141,7 @@ UPDATE release SET last_updated = '2012-04-10 14:00:00' WHERE id = 5;
 INSERT INTO medium (id, release, position) VALUES (3, 5, 2);
 INSERT INTO medium (id, release, position, name) VALUES (2, 5, 1, 'Disc 1');
 UPDATE medium SET last_updated = '2012-04-10 14:00:00' WHERE id = 2;
+
 INSERT INTO track (id, gid, recording, medium, position, number, name, artist_credit, length) VALUES (4, '9324fa33-3f60-3f63-80b9-02a5134a5dd9', 2, 2, 2, 'A-2', 2, 2, null);
 INSERT INTO track (id, gid, recording, medium, position, number, name, artist_credit, length) VALUES (3, '3c22f2da-6c1e-3f0a-baba-4147fede5eae', 1, 2, 1, 'A-1', 1, 1, 254160); 
 INSERT INTO track_gid_redirect (new_id, gid) VALUES (3, '7e53ce62-562c-4145-a9db-9736a3f04c27');
