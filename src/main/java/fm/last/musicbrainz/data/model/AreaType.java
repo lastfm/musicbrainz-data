@@ -10,6 +10,8 @@ public enum AreaType {
   /* */
   SUBDIVISION(2, "Subdivision"),
   /* */
+  CITY(3, "City"),
+  /* */
   UNDEFINED(null, null);
 
   private static final Map<Integer, AreaType> idToType;
