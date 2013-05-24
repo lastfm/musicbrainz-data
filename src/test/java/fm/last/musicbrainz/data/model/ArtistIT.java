@@ -85,4 +85,26 @@ public class ArtistIT extends AbstractHibernateModelIT {
     Artist artist = (Artist) session.load(Artist.class, 5);
     assertThat(artist.getType(), is(ArtistType.PERSON));
   }
+
+  @Test
+  public void areaReferenceDoesNotHitDatabase() {
+    Artist artist = (Artist) session.load(Artist.class, 1);
+    Area area = artist.getArea();
+    assertThat(fetchCount(), is(1L));
+  }
+
+  @Test
+  public void beginAreaReferenceDoesNotHitDatabase() {
+    Artist artist = (Artist) session.load(Artist.class, 1);
+    Area beginArea = artist.getBeginArea();
+    assertThat(fetchCount(), is(1L));
+  }
+
+  @Test
+  public void endAreaReferenceDoesNotHitDatabase() {
+    Artist artist = (Artist) session.load(Artist.class, 1);
+    Area endArea = artist.getEndArea();
+    assertThat(fetchCount(), is(1L));
+  }
+
 }
