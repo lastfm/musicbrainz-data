@@ -27,9 +27,9 @@ public enum ReleaseGroupPrimaryType {
   /* */
   EP(3, "EP"),
   /* */
-  AUDIOBOOK(8, "Audiobook"),
-  /* */
   OTHER(11, "Other"),
+  /* */
+  BROADCAST(12, "Broadcast"),
   /* */
   UNDEFINED(null, null);
 
