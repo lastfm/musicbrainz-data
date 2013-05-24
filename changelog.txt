@@ -1,5 +1,6 @@
 TBA
 - Migrated project to lastfm-oss-parent.
+- Upgraded dependencies (Spring to 3.2.2.RELEASE, Guava to 14.0.1, slf4j to 1.7.5, joda-time to 2.2).
 
 2.0.0 (2012-10-29)
 - Added support for artist gender, artist type, and artist begin and end dates (Thanks @murdos).
