@@ -18,6 +18,8 @@ package fm.last.musicbrainz.data.model;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import fm.last.musicbrainz.data.AbstractHibernateModelIT;
@@ -36,6 +38,13 @@ public class ArtistCreditIT extends AbstractHibernateModelIT {
     ArtistCredit artistCredit = (ArtistCredit) session.load(ArtistCredit.class, 1);
     Artist artist = artistCredit.getArtistCreditNames().iterator().next().getArtist();
     assertThat(artistCredit.getFullName(), is(artist.getName()));
+  }
+
+  @Test
+  public void artistCreditNameReferenceDoesNotHitDatabase() {
+    ArtistCredit artistCredit = (ArtistCredit) session.load(ArtistCredit.class, 1);
+    List<ArtistCreditName> artistCreditNames = artistCredit.getArtistCreditNames();
+    assertThat(fetchCount(), is(1L));
   }
 
 }

@@ -107,6 +107,9 @@ public class Track {
     return recording;
   }
 
+  /**
+   * Length in milliseconds.
+   */
   public Integer getLength() {
     return length;
   }
