@@ -105,4 +105,17 @@ public class ReleaseIT extends AbstractHibernateModelIT {
     assertThat(fetchCount(), is(1L));
   }
 
+  @Test
+  public void releaseUnknownCountryReferenceDoesNotHitDatabase() {
+    Release release = (Release) session.load(Release.class, 5);
+    PartialDate releaseDateForUnknownCountry = release.getReleaseDateForUnknownCountry();
+    assertThat(fetchCount(), is(1L));
+  }
+
+  @Test
+  public void releaseCountryReferenceDoesNotHitDatabase() {
+    Release release = (Release) session.load(Release.class, 5);
+    Set<ReleaseCountry> releaseCountries = release.getReleaseCountries();
+    assertThat(fetchCount(), is(1L));
+  }
 }

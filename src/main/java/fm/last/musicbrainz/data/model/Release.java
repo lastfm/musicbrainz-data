@@ -30,7 +30,6 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
@@ -70,9 +69,12 @@ public class Release extends AbstractCoreEntity<ReleaseName> {
   @Type(type = "fm.last.musicbrainz.data.hibernate.ReleaseStatusUserType")
   private ReleaseStatus status;
 
-  @OneToOne(fetch = FetchType.LAZY, optional = true)
-  @JoinColumn(name = "id", referencedColumnName = "release", nullable = true)
-  private ReleaseUnknownCountry releaseUnknownCountry;
+  /**
+   * Mapped as OneToMany to allow lazy loading. The primary key of musicbrainz.release_unknown_country will make sure
+   * there exists one row at most per release.
+   */
+  @OneToMany(targetEntity = ReleaseUnknownCountry.class, fetch = FetchType.LAZY, mappedBy = "release", orphanRemoval = true)
+  private final Set<ReleaseUnknownCountry> releaseUnknownCountries = Sets.newHashSet();
 
   @OneToMany(targetEntity = ReleaseCountry.class, fetch = FetchType.LAZY, mappedBy = "release", orphanRemoval = true)
   private final Set<ReleaseCountry> releaseCountries = Sets.newHashSet();
@@ -104,9 +106,10 @@ public class Release extends AbstractCoreEntity<ReleaseName> {
   }
 
   public PartialDate getReleaseDateForUnknownCountry() {
-    if (releaseUnknownCountry == null) {
+    if (releaseUnknownCountries.isEmpty()) {
       return null;
     }
+    ReleaseUnknownCountry releaseUnknownCountry = releaseUnknownCountries.iterator().next();
     return releaseUnknownCountry.getReleaseDate();
   }
 
