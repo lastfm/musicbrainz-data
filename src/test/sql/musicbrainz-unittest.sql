@@ -1,6 +1,7 @@
 SET search_path = 'musicbrainz';
 
 DELETE FROM medium;
+DELETE FROM track_gid_redirect;
 DELETE FROM track;
 DELETE FROM recording_gid_redirect;
 DELETE FROM recording;
@@ -139,5 +140,7 @@ UPDATE release SET last_updated = '2012-04-10 14:00:00' WHERE id = 5;
 INSERT INTO medium (id, release, position) VALUES (3, 5, 2);
 INSERT INTO medium (id, release, position, name) VALUES (2, 5, 1, 'Disc 1');
 UPDATE medium SET last_updated = '2012-04-10 14:00:00' WHERE id = 2;
-INSERT INTO track (id, gid, recording, medium, position, number, name, artist_credit, length) VALUES (4, '9324fa33-3f60-3f63-80b9-02a5134a5dd9', 2, 2, 2, '2', 2, 2, 177760);
-INSERT INTO track (id, gid, recording, medium, position, number, name, artist_credit, length) VALUES (3, '3c22f2da-6c1e-3f0a-baba-4147fede5eae', 1, 2, 1, '1', 1, 1, 254160); 
+INSERT INTO track (id, gid, recording, medium, position, number, name, artist_credit, length) VALUES (4, '9324fa33-3f60-3f63-80b9-02a5134a5dd9', 2, 2, 2, 'A-2', 2, 2, null);
+INSERT INTO track (id, gid, recording, medium, position, number, name, artist_credit, length) VALUES (3, '3c22f2da-6c1e-3f0a-baba-4147fede5eae', 1, 2, 1, 'A-1', 1, 1, 254160); 
+INSERT INTO track_gid_redirect (new_id, gid) VALUES (3, '7e53ce62-562c-4145-a9db-9736a3f04c27');
+UPDATE track SET last_updated = '2013-05-24 11:03:00' WHERE id = 3;
