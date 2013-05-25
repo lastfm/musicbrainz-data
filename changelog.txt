@@ -1,4 +1,6 @@
 TBA
+
+3.0.0 (2013-05-25)
 - Implemented changes from 2013-05-15 schema upgrade (API changes in TrackDao, Artist, Release, and Track).
 - Migrated project to lastfm-oss-parent.
 - Upgraded dependencies (Spring to 3.2.2.RELEASE, Guava to 14.0.1, slf4j to 1.7.5, joda-time to 2.2).
