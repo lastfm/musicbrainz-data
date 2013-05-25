@@ -20,37 +20,32 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-public class ReleaseStatusTest {
+public class ArtistTypeTest {
 
   @Test
-  public void statusReturnsReleaseStateOfficial() {
-    assertThat(ReleaseStatus.valueOf(1), is(ReleaseStatus.OFFICIAL));
+  public void typeReturnsAreaTypePerson() {
+    assertThat(ArtistType.valueOf(1), is(ArtistType.PERSON));
   }
 
   @Test
-  public void statusReturnsReleaseStatePromotion() {
-    assertThat(ReleaseStatus.valueOf(2), is(ReleaseStatus.PROMOTION));
+  public void typeReturnsAreaTypeGroup() {
+    assertThat(ArtistType.valueOf(2), is(ArtistType.GROUP));
   }
 
   @Test
-  public void statusReturnsReleaseStateBootleg() {
-    assertThat(ReleaseStatus.valueOf(3), is(ReleaseStatus.BOOTLEG));
+  public void typeReturnsAreaTypeOther() {
+    assertThat(ArtistType.valueOf(3), is(ArtistType.OTHER));
   }
 
   @Test
-  public void statusReturnsReleaseStatePseudoRelease() {
-    assertThat(ReleaseStatus.valueOf(4), is(ReleaseStatus.PSEUDO_RELEASE));
-  }
-
-  @Test
-  public void nullReturnsReleaseStateUndefined() {
+  public void typeReturnsAreaTypeUndefined() {
     Integer id = null;
-    assertThat(ReleaseStatus.valueOf(id), is(ReleaseStatus.UNDEFINED));
+    assertThat(ArtistType.valueOf(id), is(ArtistType.UNDEFINED));
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void unrecognisedStatusThrowsException() {
-    ReleaseStatus.valueOf(5);
+  public void unrecognisedTypeThrowsException() {
+    ArtistType.valueOf(5);
   }
 
 }

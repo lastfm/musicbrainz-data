@@ -13,20 +13,24 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package fm.last.musicbrainz.data.model;
+package fm.last.musicbrainz.data.hibernate;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import fm.last.musicbrainz.data.model.AreaType;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+public class AreaTypeUserType extends AbstractEnumUserType<AreaType> {
 
-@Access(AccessType.FIELD)
-@Entity
-@Table(name = "artist_name", schema = "musicbrainz")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-class ArtistName extends AbstractName {
+  public AreaTypeUserType() {
+    super(AreaType.class);
+  }
+
+  @Override
+  public Integer getIntegerValue(AreaType type) {
+    return type.getId();
+  }
+
+  @Override
+  public AreaType getEnumConstant(Integer id) {
+    return AreaType.valueOf(id);
+  }
 
 }

@@ -20,37 +20,32 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-public class ReleaseStatusTest {
+public class GenderTest {
 
   @Test
-  public void statusReturnsReleaseStateOfficial() {
-    assertThat(ReleaseStatus.valueOf(1), is(ReleaseStatus.OFFICIAL));
+  public void typeReturnsGenderMale() {
+    assertThat(Gender.valueOf(1), is(Gender.MALE));
   }
 
   @Test
-  public void statusReturnsReleaseStatePromotion() {
-    assertThat(ReleaseStatus.valueOf(2), is(ReleaseStatus.PROMOTION));
+  public void typeReturnsGenderFemale() {
+    assertThat(Gender.valueOf(2), is(Gender.FEMALE));
   }
 
   @Test
-  public void statusReturnsReleaseStateBootleg() {
-    assertThat(ReleaseStatus.valueOf(3), is(ReleaseStatus.BOOTLEG));
+  public void typeReturnsGenderOther() {
+    assertThat(Gender.valueOf(3), is(Gender.OTHER));
   }
 
   @Test
-  public void statusReturnsReleaseStatePseudoRelease() {
-    assertThat(ReleaseStatus.valueOf(4), is(ReleaseStatus.PSEUDO_RELEASE));
-  }
-
-  @Test
-  public void nullReturnsReleaseStateUndefined() {
+  public void typeReturnsGenderUndefined() {
     Integer id = null;
-    assertThat(ReleaseStatus.valueOf(id), is(ReleaseStatus.UNDEFINED));
+    assertThat(Gender.valueOf(id), is(Gender.UNDEFINED));
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void unrecognisedStatusThrowsException() {
-    ReleaseStatus.valueOf(5);
+  public void unrecognisedTypeThrowsException() {
+    Gender.valueOf(5);
   }
 
 }

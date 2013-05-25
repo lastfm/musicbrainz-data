@@ -27,7 +27,7 @@ Java data bindings for the [MusicBrainz Database](http://musicbrainz.org/doc/Mus
         <dependency>
           <groupId>fm.last</groupId>
           <artifactId>musicbrainz-data</artifactId>
-          <version>1.2</version>
+          <version>3.0.0</version>
         </dependency>
 
 ## Usage examples

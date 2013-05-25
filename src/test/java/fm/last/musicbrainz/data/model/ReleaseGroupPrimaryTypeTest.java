@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 The musicbrainz-data Authors
+ * Copyright 2013 The musicbrainz-data Authors
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -38,13 +38,13 @@ public class ReleaseGroupPrimaryTypeTest {
   }
 
   @Test
-  public void statusReturnsReleaseGroupPrimaryTypeAudiobook() {
-    assertThat(ReleaseGroupPrimaryType.valueOf(8), is(ReleaseGroupPrimaryType.AUDIOBOOK));
+  public void statusReturnsReleaseGroupPrimaryTypeOther() {
+    assertThat(ReleaseGroupPrimaryType.valueOf(11), is(ReleaseGroupPrimaryType.OTHER));
   }
 
   @Test
-  public void statusReturnsReleaseGroupPrimaryTypeOther() {
-    assertThat(ReleaseGroupPrimaryType.valueOf(11), is(ReleaseGroupPrimaryType.OTHER));
+  public void statusReturnsReleaseGroupPrimaryTypeBroadcast() {
+    assertThat(ReleaseGroupPrimaryType.valueOf(12), is(ReleaseGroupPrimaryType.BROADCAST));
   }
 
   @Test

@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 The musicbrainz-data Authors
+ * Copyright 2013 The musicbrainz-data Authors
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.isEmptyString;
 import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 import java.util.List;
@@ -48,10 +49,20 @@ public class ReleaseIT extends AbstractHibernateModelIT {
     assertThat(release.getLastUpdated(), is(DateTime.parse("2012-04-10T14:00:00")));
     assertThat(release.getName(), is("Multi-Disc Extravaganza"));
     assertThat(release.getMediums(), hasSize(2));
-    assertThat(release.getReleaseDate().toLocalDate(), is(LocalDate.parse("2011-07-23")));
     assertThat(release.getStatus(), is(ReleaseStatus.UNDEFINED));
     assertThat(release.getReleaseGroup().getId(), is(4));
-    assertThat(release.getCountry().getIsoCode(), is("FR"));
+    assertThat(release.getReleaseDateForUnknownCountry().toLocalDate(), is(LocalDate.parse("2011-07-23")));
+    assertThat(release.getReleaseCountries(), hasSize(0));
+  }
+
+  @Test
+  public void releaseCountriesAreMappedWhenSpecified() {
+    Set<ReleaseCountry> expected = Sets.newHashSet(new ReleaseCountry(4, 151, new PartialDate(null, (short) 7,
+        (short) 23)), new ReleaseCountry(4, 113, new PartialDate((short) 2010, (short) 7, (short) 23)));
+
+    Release release = (Release) session.load(Release.class, 4);
+    assertThat(release.getReleaseDateForUnknownCountry(), is(nullValue()));
+    assertThat(release.getReleaseCountries(), is(expected));
   }
 
   @Test
@@ -94,4 +105,17 @@ public class ReleaseIT extends AbstractHibernateModelIT {
     assertThat(fetchCount(), is(1L));
   }
 
+  @Test
+  public void releaseUnknownCountryReferenceDoesNotHitDatabase() {
+    Release release = (Release) session.load(Release.class, 5);
+    PartialDate releaseDateForUnknownCountry = release.getReleaseDateForUnknownCountry();
+    assertThat(fetchCount(), is(1L));
+  }
+
+  @Test
+  public void releaseCountryReferenceDoesNotHitDatabase() {
+    Release release = (Release) session.load(Release.class, 5);
+    Set<ReleaseCountry> releaseCountries = release.getReleaseCountries();
+    assertThat(fetchCount(), is(1L));
+  }
 }

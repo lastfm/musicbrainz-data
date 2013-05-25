@@ -1,6 +1,6 @@
 /*
- * Copyright 2012 The musicbrainz-data Authors
- * 
+ * Copyright 2013 The musicbrainz-data Authors
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -20,15 +20,32 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import fm.last.musicbrainz.data.AbstractHibernateModelIT;
-
-public class CountryIT extends AbstractHibernateModelIT {
+public class AreaTypeTest {
 
   @Test
-  public void allFieldsArePopulated() {
-    Country country = (Country) session.load(Country.class, 73);
-    assertThat(country.getName(), is("France"));
-    assertThat(country.getIsoCode(), is("FR"));
+  public void idReturnsAreaTypeCountry() {
+    assertThat(AreaType.valueOf(1), is(AreaType.COUNTRY));
+  }
+
+  @Test
+  public void idReturnsAreaTypeSubdivision() {
+    assertThat(AreaType.valueOf(2), is(AreaType.SUBDIVISION));
+  }
+
+  @Test
+  public void idReturnsAreaTypeCity() {
+    assertThat(AreaType.valueOf(3), is(AreaType.CITY));
+  }
+
+  @Test
+  public void nullReturnsAreaTypeUndefined() {
+    Integer id = null;
+    assertThat(AreaType.valueOf(id), is(AreaType.UNDEFINED));
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void unrecognisedIdThrowsException() {
+    AreaType.valueOf(5);
   }
 
 }

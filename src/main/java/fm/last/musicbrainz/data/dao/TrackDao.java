@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 The musicbrainz-data Authors
+ * Copyright 2013 The musicbrainz-data Authors
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -23,13 +23,20 @@ import fm.last.musicbrainz.data.model.Track;
 /**
  * Provides access to {@link Track}s.
  */
-public interface TrackDao {
+public interface TrackDao extends MusicBrainzDao<Track> {
+
+  /**
+   * Ignores the casing of {@code trackName}.
+   * 
+   * @return Empty list if no {@link Track}s are found
+   */
+  List<Track> getByArtistAndName(Artist artist, String trackName);
 
   /**
    * Also returns {@link Track}s where the {@link Artist} collaborated with other {@link Artist}s.
    * 
    * @return Empty list if {@link Artist} has no {@link Track}s
    */
-  List<Track> getByArtist(Artist musicBrainzArtist);
+  List<Track> getByArtist(Artist artist);
 
 }

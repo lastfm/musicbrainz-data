@@ -20,16 +20,16 @@ import java.io.Serializable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-class ArtistCreditNameCompositeKey implements Serializable {
+class ReleaseCountryCompositeKey implements Serializable {
 
-  private static final long serialVersionUID = 21062012L;
+  private static final long serialVersionUID = 23052013L;
 
-  int artistCredit;
-  short position;
+  int release;
+  int country;
 
   @Override
   public int hashCode() {
-    return new HashCodeBuilder(2105, 2011).append(artistCredit).append(position).toHashCode();
+    return new HashCodeBuilder(2305, 2013).append(release).append(country).toHashCode();
   }
 
   @Override
@@ -43,8 +43,8 @@ class ArtistCreditNameCompositeKey implements Serializable {
     if (object.getClass() != getClass()) {
       return false;
     }
-    ArtistCreditNameCompositeKey rhs = (ArtistCreditNameCompositeKey) object;
-    return new EqualsBuilder().append(artistCredit, rhs.artistCredit).append(position, rhs.position).isEquals();
+    ReleaseCountryCompositeKey rhs = (ReleaseCountryCompositeKey) object;
+    return new EqualsBuilder().append(release, rhs.release).append(country, rhs.country).isEquals();
   }
 
 }

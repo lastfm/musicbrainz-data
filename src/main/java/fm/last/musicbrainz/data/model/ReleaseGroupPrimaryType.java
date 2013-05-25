@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 The musicbrainz-data Authors
+ * Copyright 2013 The musicbrainz-data Authors
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ public enum ReleaseGroupPrimaryType {
   /* */
   EP(3, "EP"),
   /* */
-  AUDIOBOOK(8, "Audiobook"),
-  /* */
   OTHER(11, "Other"),
+  /* */
+  BROADCAST(12, "Broadcast"),
   /* */
   UNDEFINED(null, null);
 

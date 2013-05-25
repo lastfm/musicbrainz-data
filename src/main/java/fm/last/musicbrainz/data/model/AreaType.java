@@ -1,6 +1,6 @@
 /*
  * Copyright 2013 The musicbrainz-data Authors
- * 
+ *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
  *  You may obtain a copy of the License at
@@ -19,37 +19,37 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 
-public enum ArtistType {
+public enum AreaType {
   /* */
-  PERSON(1, "Person"),
+  COUNTRY(1, "Country"),
   /* */
-  GROUP(2, "Group"),
+  SUBDIVISION(2, "Subdivision"),
   /* */
-  OTHER(3, "Other"),
+  CITY(3, "City"),
   /* */
   UNDEFINED(null, null);
 
-  private static final Map<Integer, ArtistType> idToType;
+  private static final Map<Integer, AreaType> idToType;
 
   static {
     idToType = Maps.newHashMap();
-    for (ArtistType value : values()) {
+    for (AreaType value : values()) {
       idToType.put(value.getId(), value);
     }
   }
 
-  private final Integer id;
-  private final String name;
+  private Integer id;
+  private String name;
 
-  private ArtistType(Integer id, String name) {
+  private AreaType(Integer id, String name) {
     this.id = id;
     this.name = name;
   }
 
-  public static ArtistType valueOf(Integer id) {
-    ArtistType type = idToType.get(id);
+  public static AreaType valueOf(Integer id) {
+    AreaType type = idToType.get(id);
     if (type == null) {
-      throw new IllegalArgumentException("Unrecognized artist type: " + id);
+      throw new IllegalArgumentException("Unrecognized area type: " + id);
     }
     return type;
   }
@@ -61,5 +61,4 @@ public enum ArtistType {
   public String getName() {
     return name;
   }
-
 }

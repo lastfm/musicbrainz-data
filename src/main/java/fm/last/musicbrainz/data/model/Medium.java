@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 The musicbrainz-data Authors
+ * Copyright 2013 The musicbrainz-data Authors
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package fm.last.musicbrainz.data.model;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Access;
@@ -24,14 +25,17 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+
+import com.google.common.collect.Lists;
 
 @Access(AccessType.FIELD)
 @Entity
@@ -48,7 +52,7 @@ public class Medium {
   private Release release;
 
   @Column(name = "position")
-  private Integer position;
+  private int position;
 
   @Column(name = "name")
   private String name;
@@ -57,9 +61,10 @@ public class Medium {
   @Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
   private DateTime lastUpdated;
 
-  @ManyToOne(targetEntity = TrackList.class, fetch = FetchType.EAGER)
-  @JoinColumn(name = "tracklist")
-  private TrackList trackList;
+  @OneToMany(targetEntity = Track.class, fetch = FetchType.LAZY)
+  @JoinColumn(name = "medium")
+  @OrderBy("position")
+  private final List<Track> tracks = Lists.newArrayList();
 
   public int getId() {
     return id;
@@ -69,7 +74,7 @@ public class Medium {
     return release;
   }
 
-  public Integer getPosition() {
+  public int getPosition() {
     return position;
   }
 
@@ -87,7 +92,7 @@ public class Medium {
    * @return Empty list if medium has no {@link Track}s
    */
   public List<Track> getTracks() {
-    return trackList.getTracks();
+    return Collections.unmodifiableList(tracks);
   }
 
 }

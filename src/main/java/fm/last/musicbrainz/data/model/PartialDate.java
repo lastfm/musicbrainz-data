@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 The musicbrainz-data Authors
+ * Copyright 2013 The musicbrainz-data Authors
  * 
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ import java.util.Comparator;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 import org.joda.time.LocalDate;
@@ -32,19 +31,17 @@ import com.google.common.collect.Ordering;
 @Access(AccessType.PROPERTY)
 public class PartialDate implements Comparable<PartialDate> {
 
-  @Column(name = "date_year")
+  private static final String DATE_FIELD_SEPARATOR = "-";
+
   private Short year;
-
-  @Column(name = "date_month")
   private Short month;
-
-  @Column(name = "date_day")
   private Short day;
 
   public PartialDate() {
   }
 
-  public PartialDate(Short year, Short month, Short day) {
+  /** ONLY FOR TESTING **/
+  PartialDate(Short year, Short month, Short day) {
     this.year = year;
     this.month = month;
     this.day = day;
@@ -54,20 +51,20 @@ public class PartialDate implements Comparable<PartialDate> {
     return year;
   }
 
-  public void setYear(Short year) {
-    this.year = year;
-  }
-
   public Short getMonth() {
     return month;
   }
 
-  public void setMonth(Short month) {
-    this.month = month;
-  }
-
   public Short getDay() {
     return day;
+  }
+
+  public void setYear(Short year) {
+    this.year = year;
+  }
+
+  public void setMonth(Short month) {
+    this.month = month;
   }
 
   public void setDay(Short day) {
@@ -87,10 +84,8 @@ public class PartialDate implements Comparable<PartialDate> {
       PartialDate other = (PartialDate) obj;
       return Objects.equal(year, other.getYear()) && Objects.equal(month, other.getMonth())
           && Objects.equal(day, other.getDay());
-    } else {
-      return false;
     }
-
+    return false;
   }
 
   @Override
@@ -103,13 +98,12 @@ public class PartialDate implements Comparable<PartialDate> {
     if (year == null) {
       return "";
     }
-    String separator = "-";
-    StringBuffer sb = new StringBuffer(year);
+    StringBuilder sb = new StringBuilder(year);
     sb.append(String.format("%04d", year));
     if (month != null) {
-      sb.append(separator).append(String.format("%02d", month));
+      sb.append(DATE_FIELD_SEPARATOR).append(String.format("%02d", month));
       if (day != null) {
-        sb.append(separator).append(String.format("%02d", day));
+        sb.append(DATE_FIELD_SEPARATOR).append(String.format("%02d", day));
       }
     }
     return sb.toString();
