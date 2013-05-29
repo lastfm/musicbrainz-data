@@ -9,7 +9,7 @@
 
   <artifactId>musicbrainz-data</artifactId>
   <packaging>jar</packaging>
-  <version>3.0.1-SNAPSHOT</version>
+  <version>3.1.0</version>
   <name>${project.artifactId}</name>
   <url>${project.scm.url}</url>
   <description>Java data bindings for the MusicBrainz Database using Hibernate</description>
