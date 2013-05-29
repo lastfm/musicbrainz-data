@@ -1,5 +1,9 @@
 TBA
 
+3.1.0 (2013-05-29)
+- Changed visibility of AbstractCoreEntity to public to allow mocking of entities (e.g., Artist, Track) 
+  (Mockito has problems when the parent of the mocked class is not public).
+
 3.0.0 (2013-05-25)
 - Implemented changes from 2013-05-15 schema upgrade (API changes in TrackDao, Artist, Release, and Track).
 - Migrated project to lastfm-oss-parent.

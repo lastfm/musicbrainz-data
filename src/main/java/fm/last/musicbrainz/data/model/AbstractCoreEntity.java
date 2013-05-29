@@ -28,7 +28,7 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 @MappedSuperclass
-abstract class AbstractCoreEntity<ClassName extends AbstractName> {
+public abstract class AbstractCoreEntity<ClassName extends AbstractName> {
 
   @Id
   @Column(name = "id")
