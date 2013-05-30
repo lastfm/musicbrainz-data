@@ -58,7 +58,8 @@ public class ReleaseIT extends AbstractHibernateModelIT {
   @Test
   public void releaseCountriesAreMappedWhenSpecified() {
     Set<ReleaseCountry> expected = Sets.newHashSet(new ReleaseCountry(4, 151, new PartialDate(null, (short) 7,
-        (short) 23)), new ReleaseCountry(4, 113, new PartialDate((short) 2010, (short) 7, (short) 23)));
+        (short) 23)), new ReleaseCountry(4, 113, new PartialDate((short) 2010, (short) 7, (short) 23)),
+        new ReleaseCountry(4, 203, null));
 
     Release release = (Release) session.load(Release.class, 4);
     assertThat(release.getReleaseDateForUnknownCountry(), is(nullValue()));

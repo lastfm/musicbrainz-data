@@ -67,6 +67,8 @@ INSERT INTO area (id, gid, name, sort_name, type, begin_date_year, begin_date_mo
 INSERT INTO area_gid_redirect (new_id, gid) VALUES (151, '6b43e5f2-49e8-46ce-94cb-a9b23e5bb4e8');
 INSERT INTO area (id, gid, name, sort_name, type, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day) VALUES (113, 'b9f7d640-46e8-313e-b158-ded6d18593b3', 'South Korea', 'South Korea', 1, null, null, null, null, null, null);
 
+INSERT INTO area (id, gid, name, sort_name, type, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day) VALUES (203, '1333ff06-8e3d-3c8e-9f3a-13a2a38b41df', 'Switzerland', 'Switzerland', 1, null, null, null, null, null, null);
+
 UPDATE area SET last_updated = '2013-05-19 20:23:54' WHERE id = 1178;
 UPDATE area SET last_updated = '2013-05-15 16:49:41' WHERE id = 151;
 
@@ -122,6 +124,7 @@ INSERT INTO release_group (id, artist_credit, gid, name) VALUES (3, 2, 'e83f684b
 INSERT INTO release (id, artist_credit, gid, release_group, name, status) VALUES (4, 2, '5ced615f-cd92-3b08-b3cb-5971e5bd6eb5', 3, 3, 1);
 INSERT INTO release_country (release, country, date_year, date_month, date_day) VALUES (4, 151, null, 7, 23);
 INSERT INTO release_country (release, country, date_year, date_month, date_day) VALUES (4, 113, 2010, 7, 23);
+INSERT INTO release_country (release, country, date_year, date_month, date_day) VALUES (4, 203, null, null, null);
 
 -- for unit testing ArtistCredit, Medium
 
