@@ -28,6 +28,8 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -56,6 +58,14 @@ public class ReleaseGroup extends AbstractCoreEntity<ReleaseName> {
   @Type(type = "fm.last.musicbrainz.data.hibernate.ReleaseGroupPrimaryTypeUserType")
   private ReleaseGroupPrimaryType type;
 
+  @ElementCollection
+  @CollectionTable(name = "release_group_secondary_type_join", joinColumns = @JoinColumn(name = "release_group"))
+  @Enumerated(EnumType.ORDINAL)
+  @Column(name = "secondary_type")
+  @Type(type = "fm.last.musicbrainz.data.hibernate.ReleaseGroupSecondaryTypeUserType")
+  private Set<ReleaseGroupSecondaryType> secondaryTypes;
+
+
   public ArtistCredit getArtistCredit() {
     return artistCredit;
   }
@@ -64,7 +74,11 @@ public class ReleaseGroup extends AbstractCoreEntity<ReleaseName> {
     return type;
   }
 
-  /**
+  public Set<ReleaseGroupSecondaryType> getSecondaryTypes() {
+    return secondaryTypes;
+  }
+
+    /**
    * Returns an immutable set of all associated GIDs (canonical and redirected).
    */
   public Set<UUID> getGids() {
