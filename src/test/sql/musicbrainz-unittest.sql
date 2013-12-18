@@ -76,25 +76,25 @@ UPDATE area SET last_updated = '2013-05-15 16:49:41' WHERE id = 151;
 
 INSERT INTO artist_name (id, name) VALUES (1, 'Q and Not U');
 
-INSERT INTO artist (id, gid, name, sort_name, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day, area, comment, ended, begin_area, end_area) VALUES (1, '994fcd41-2831-4318-9825-66bacbcf2cfe', 'Q and Not U', 1, 1950, 2, 3, 2001, 4, 5, 397, 'Soft Pyramids', true, 113, 151);
+INSERT INTO artist (id, gid, name, sort_name, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day, area, comment, ended, begin_area, end_area) VALUES (1, '994fcd41-2831-4318-9825-66bacbcf2cfe', 'Q and Not U', 'Q and Not U', 1950, 2, 3, 2001, 4, 5, 397, 'Soft Pyramids', true, 113, 151);
 INSERT INTO artist_gid_redirect (new_id, gid) VALUES (1, 'a934e33f-b3cb-47dd-9638-f7f1f25fe162');
 UPDATE artist SET last_updated = '2012-04-10 14:00:00' WHERE id = 1;
 
 INSERT INTO artist_name (id, name) VALUES (2, 'Mono');
 
-INSERT INTO artist (id, gid, name, sort_name, comment) VALUES (2, '194fcd41-2831-4318-9825-66bacbcf2cfe', 2, 'Mono', 'Uk');
-INSERT INTO artist (id, gid, name, sort_name, comment) VALUES (3, '294fcd41-2831-4318-9825-66bacbcf2cfe', 2, 'Mono', 'Jp');
+INSERT INTO artist (id, gid, name, sort_name, comment) VALUES (2, '194fcd41-2831-4318-9825-66bacbcf2cfe', 'Mono', 'Mono', 'Uk');
+INSERT INTO artist (id, gid, name, sort_name, comment) VALUES (3, '294fcd41-2831-4318-9825-66bacbcf2cfe', 'Mono', 'Mono', 'Jp');
 
 INSERT INTO artist_name (id, name) VALUES (3, 'Hot Chip');
 
-INSERT INTO artist (id, gid, name, sort_name, type) VALUES (4, 'd8915e13-d67a-4aa0-9c0b-1f126af951af', 3, 'Hot Chip', 2);
+INSERT INTO artist (id, gid, name, sort_name, type) VALUES (4, 'd8915e13-d67a-4aa0-9c0b-1f126af951af',  'Hot Chip', 'Hot Chip', 2);
 INSERT INTO artist_credit (id, name, artist_count) VALUES (2, 'Hot Chip', 1);
 INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (2, 4, 1, '', 'Hot Chip');
 
 
 INSERT INTO artist_name (id, name) VALUES (4, 'Rick Astley');
 
-INSERT INTO artist (id, gid, name, sort_name, type, gender) VALUES (5, 'db92a151-1ac2-438b-bc43-b82e149ddd50', 4, 'Rick Astley', 1, 1);
+INSERT INTO artist (id, gid, name, sort_name, type, gender) VALUES (5, 'db92a151-1ac2-438b-bc43-b82e149ddd50', 'Rick Astley', 'Rick Astley', 1, 1);
 INSERT INTO artist_credit (id, name, artist_count) VALUES (1, 'Rick Astley', 1);
 INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (1, 5, 1, '', 'Rick Astley');
 
