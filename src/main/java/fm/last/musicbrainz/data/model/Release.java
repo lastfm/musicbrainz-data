@@ -45,7 +45,7 @@ import com.google.common.collect.Sets;
 @Entity
 @Table(name = "release", schema = "musicbrainz")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Release extends AbstractCoreEntity<ReleaseName> {
+public class Release extends AbstractCoreEntity {
 
   @ManyToOne(optional = false, fetch = FetchType.LAZY)
   @JoinColumn(name = "release_group", nullable = false)
@@ -68,6 +68,9 @@ public class Release extends AbstractCoreEntity<ReleaseName> {
   @Column(name = "status")
   @Type(type = "fm.last.musicbrainz.data.hibernate.ReleaseStatusUserType")
   private ReleaseStatus status;
+
+  @Column(name = "name")
+  private String name;
 
   /**
    * Mapped as OneToMany to allow lazy loading. The primary key of musicbrainz.release_unknown_country will make sure
@@ -118,6 +121,11 @@ public class Release extends AbstractCoreEntity<ReleaseName> {
    */
   public Set<ReleaseCountry> getReleaseCountries() {
     return Collections.unmodifiableSet(releaseCountries);
+  }
+
+  @Override
+  public String getName() {
+    return name;
   }
 
 }

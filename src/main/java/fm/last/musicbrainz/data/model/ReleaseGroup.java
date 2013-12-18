@@ -40,7 +40,7 @@ import com.google.common.collect.Sets;
 @Entity
 @Table(name = "release_group", schema = "musicbrainz")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class ReleaseGroup extends AbstractCoreEntity<ReleaseName> {
+public class ReleaseGroup extends AbstractCoreEntity {
 
   @ElementCollection(fetch = FetchType.LAZY)
   @CollectionTable(name = "release_group_gid_redirect", schema = "musicbrainz", joinColumns = @JoinColumn(name = "new_id"))
@@ -56,6 +56,9 @@ public class ReleaseGroup extends AbstractCoreEntity<ReleaseName> {
   @Type(type = "fm.last.musicbrainz.data.hibernate.ReleaseGroupPrimaryTypeUserType")
   private ReleaseGroupPrimaryType type;
 
+  @Column(name = "name")
+  private String name;
+
   public ArtistCredit getArtistCredit() {
     return artistCredit;
   }
@@ -69,6 +72,11 @@ public class ReleaseGroup extends AbstractCoreEntity<ReleaseName> {
    */
   public Set<UUID> getGids() {
     return new ImmutableSet.Builder<UUID>().addAll(redirectedGids).add(gid).build();
+  }
+
+  @Override
+  public String getName() {
+    return name;
   }
 
 }

@@ -51,7 +51,7 @@ public class RecordingDaoImpl extends AbstractMusicBrainzHibernateDao<Recording>
     return list(query(
         "select recording from " + Recording.class.getName()
             + " recording join recording.artistCredit.artistCreditNames artistCreditNames"
-            + " where artistCreditNames.artist.id = :artistId and upper(recording.name.name) = upper(:name)")
+            + " where artistCreditNames.artist.id = :artistId and upper(recording.name) = upper(:name)")
         .setInteger("artistId", artist.getId()).setString("name", trackName));
   }
 

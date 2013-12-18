@@ -43,13 +43,16 @@ import com.google.common.collect.Sets;
 @Entity
 @Table(name = "artist", schema = "musicbrainz")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Artist extends AbstractCoreEntity<ArtistName> {
+public class Artist extends AbstractCoreEntity {
 
   @ElementCollection(fetch = FetchType.LAZY)
   @CollectionTable(name = "artist_gid_redirect", schema = "musicbrainz", joinColumns = @JoinColumn(name = "new_id"))
   @Column(name = "gid")
   @Type(type = "pg-uuid")
   private final Set<UUID> redirectedGids = Sets.newHashSet();
+
+  @Column(name = "name")
+  private String name;
 
   @Column(name = "type")
   @Type(type = "fm.last.musicbrainz.data.hibernate.ArtistTypeUserType")
@@ -108,6 +111,10 @@ public class Artist extends AbstractCoreEntity<ArtistName> {
 
   public boolean hasEnded() {
     return ended;
+  }
+
+  public String getName() {
+    return name;
   }
 
   /**

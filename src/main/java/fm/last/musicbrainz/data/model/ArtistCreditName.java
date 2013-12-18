@@ -48,10 +48,6 @@ public class ArtistCreditName {
   @JoinColumn(name = "artist")
   private Artist artist;
 
-  @ManyToOne(targetEntity = ArtistName.class, optional = false, fetch = FetchType.EAGER)
-  @JoinColumn(name = "name")
-  private ArtistName name;
-
   @Column(name = "join_phrase")
   private String joinPhrase;
 
@@ -68,7 +64,7 @@ public class ArtistCreditName {
   }
 
   public String getName() {
-    return name.getName();
+    return artist.getName();
   }
 
   public String getJoinPhrase() {

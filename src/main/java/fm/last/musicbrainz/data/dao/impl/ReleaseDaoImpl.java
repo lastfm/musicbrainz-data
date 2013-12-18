@@ -59,7 +59,7 @@ public class ReleaseDaoImpl extends AbstractMusicBrainzHibernateDao<Release> imp
     return list(query(
         "select release from " + Release.class.getName()
             + " release join release.artistCredit.artistCreditNames artistCreditNames"
-            + " where artistCreditNames.artist.id = :artistId and upper(release.name.name) = upper(:name)").setInteger(
+            + " where artistCreditNames.artist.id = :artistId and upper(release.name) = upper(:name)").setInteger(
         "artistId", artist.getId()).setString("name", releaseName));
   }
 }

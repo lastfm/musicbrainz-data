@@ -40,7 +40,7 @@ import com.google.common.collect.Sets;
 @Entity
 @Table(name = "recording", schema = "musicbrainz")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Recording extends AbstractCoreEntity<TrackName> {
+public class Recording extends AbstractCoreEntity {
 
   @ElementCollection(fetch = FetchType.LAZY)
   @CollectionTable(name = "recording_gid_redirect", schema = "musicbrainz", joinColumns = @JoinColumn(name = "new_id"))
@@ -54,6 +54,9 @@ public class Recording extends AbstractCoreEntity<TrackName> {
 
   @Column(name = "length")
   private Integer length;
+
+  @Column(name = "name")
+  private String name;
 
   public ArtistCredit getArtistCredit() {
     return artistCredit;
@@ -71,5 +74,10 @@ public class Recording extends AbstractCoreEntity<TrackName> {
    */
   public Set<UUID> getGids() {
     return new ImmutableSet.Builder<UUID>().addAll(redirectedGids).add(gid).build();
+  }
+
+  @Override
+  public String getName() {
+    return name;
   }
 }

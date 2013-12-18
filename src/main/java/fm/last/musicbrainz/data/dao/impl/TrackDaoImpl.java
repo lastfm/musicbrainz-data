@@ -59,7 +59,7 @@ public class TrackDaoImpl extends AbstractMusicBrainzHibernateDao<Track> impleme
     return list(query(
         "select track from " + Track.class.getName()
             + " track join track.artistCredit.artistCreditNames artistCreditNames"
-            + " where artistCreditNames.artist.id = :artistId and upper(track.name.name) = upper(:name)").setInteger(
+            + " where artistCreditNames.artist.id = :artistId and upper(track.name) = upper(:name)").setInteger(
         "artistId", artist.getId()).setString("name", trackName));
   }
 }

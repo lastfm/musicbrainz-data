@@ -40,7 +40,7 @@ public class ArtistDaoImpl extends AbstractMusicBrainzHibernateDao<Artist> imple
 
   @Override
   public List<Artist> getByName(String name) {
-    return list(query("from " + Artist.class.getSimpleName() + " where upper(name.name) = upper(:name)").setString(
+    return list(query("from " + Artist.class.getSimpleName() + " where upper(name) = upper(:name)").setString(
         "name", name));
   }
 

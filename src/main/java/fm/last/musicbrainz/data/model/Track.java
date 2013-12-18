@@ -58,10 +58,6 @@ public class Track {
   @Type(type = "pg-uuid")
   private final Set<UUID> redirectedGids = Sets.newHashSet();
 
-  @ManyToOne(optional = false, fetch = FetchType.EAGER)
-  @JoinColumn(name = "name")
-  private TrackName name;
-
   @ManyToOne(targetEntity = ArtistCredit.class, fetch = FetchType.LAZY)
   @JoinColumn(name = "artist_credit", nullable = true)
   private ArtistCredit artistCredit;
@@ -71,6 +67,9 @@ public class Track {
 
   @Column(name = "number")
   private String number;
+
+  @Column(name = "name")
+  private String name;
 
   @ManyToOne(targetEntity = Recording.class, fetch = FetchType.LAZY)
   @JoinColumn(name = "recording")
@@ -96,7 +95,7 @@ public class Track {
   }
 
   public String getName() {
-    return name.getName();
+    return name;
   }
 
   public ArtistCredit getArtistCredit() {
