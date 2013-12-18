@@ -75,53 +75,58 @@ UPDATE area SET last_updated = '2013-05-15 16:49:41' WHERE id = 151;
 --
 
 INSERT INTO artist_name (id, name) VALUES (1, 'Q and Not U');
-INSERT INTO artist (id, gid, name, sort_name, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day, area, comment, ended, begin_area, end_area) VALUES (1, '994fcd41-2831-4318-9825-66bacbcf2cfe', 1, 1, 1950, 2, 3, 2001, 4, 5, 397, 'Soft Pyramids', true, 113, 151);
+
+INSERT INTO artist (id, gid, name, sort_name, begin_date_year, begin_date_month, begin_date_day, end_date_year, end_date_month, end_date_day, area, comment, ended, begin_area, end_area) VALUES (1, '994fcd41-2831-4318-9825-66bacbcf2cfe', 'Q and Not U', 1, 1950, 2, 3, 2001, 4, 5, 397, 'Soft Pyramids', true, 113, 151);
 INSERT INTO artist_gid_redirect (new_id, gid) VALUES (1, 'a934e33f-b3cb-47dd-9638-f7f1f25fe162');
 UPDATE artist SET last_updated = '2012-04-10 14:00:00' WHERE id = 1;
 
 INSERT INTO artist_name (id, name) VALUES (2, 'Mono');
-INSERT INTO artist (id, gid, name, sort_name, comment) VALUES (2, '194fcd41-2831-4318-9825-66bacbcf2cfe', 2, 2, 'Uk');
-INSERT INTO artist (id, gid, name, sort_name, comment) VALUES (3, '294fcd41-2831-4318-9825-66bacbcf2cfe', 2, 2, 'Jp');
+
+INSERT INTO artist (id, gid, name, sort_name, comment) VALUES (2, '194fcd41-2831-4318-9825-66bacbcf2cfe', 2, 'Mono', 'Uk');
+INSERT INTO artist (id, gid, name, sort_name, comment) VALUES (3, '294fcd41-2831-4318-9825-66bacbcf2cfe', 2, 'Mono', 'Jp');
 
 INSERT INTO artist_name (id, name) VALUES (3, 'Hot Chip');
-INSERT INTO artist (id, gid, name, sort_name, type) VALUES (4, 'd8915e13-d67a-4aa0-9c0b-1f126af951af', 3, 3, 2);
-INSERT INTO artist_credit (id, name, artist_count) VALUES (2, 3, 1);
-INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (2, 4, 1, '', 3);
+
+INSERT INTO artist (id, gid, name, sort_name, type) VALUES (4, 'd8915e13-d67a-4aa0-9c0b-1f126af951af', 3, 'Hot Chip', 2);
+INSERT INTO artist_credit (id, name, artist_count) VALUES (2, 'Hot Chip', 1);
+INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (2, 4, 1, '', 'Hot Chip');
+
 
 INSERT INTO artist_name (id, name) VALUES (4, 'Rick Astley');
-INSERT INTO artist (id, gid, name, sort_name, type, gender) VALUES (5, 'db92a151-1ac2-438b-bc43-b82e149ddd50', 4, 4, 1, 1);
-INSERT INTO artist_credit (id, name, artist_count) VALUES (1, 4, 1);
-INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (1, 5, 1, '', 4);
+
+INSERT INTO artist (id, gid, name, sort_name, type, gender) VALUES (5, 'db92a151-1ac2-438b-bc43-b82e149ddd50', 4, 'Rick Astley', 1, 1);
+INSERT INTO artist_credit (id, name, artist_count) VALUES (1, 'Rick Astley', 1);
+INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (1, 5, 1, '', 'Rick Astley');
 
 INSERT INTO track_name (id, name) VALUES (1, 'The Saint');
-INSERT INTO recording (id, artist_credit, gid, name, length) VALUES (1, 1, '4ea1383f-aca7-4a39-9839-576cf3af438b', 1, 1000);
+INSERT INTO recording (id, artist_credit, gid, name, length) VALUES (1, 1, '4ea1383f-aca7-4a39-9839-576cf3af438b', 'The Saint', 1000);
 INSERT INTO recording_gid_redirect (new_id, gid) VALUES (1, '6a27908d-9663-4e61-9ef3-e8b82c31dc14');
 UPDATE recording SET last_updated = '2012-04-10 14:00:00' WHERE id = 1;
-INSERT INTO track (id, gid, medium, artist_credit, name, position, number, recording) VALUES (1, '70c4bd53-f3ef-354f-97a9-7ed76915087a', 1, 1, 1, 1, '1', 1);
+INSERT INTO track (id, gid, medium, artist_credit, name, position, number, recording) VALUES (1, '70c4bd53-f3ef-354f-97a9-7ed76915087a', 1, 1, 'The Saint', 1, '1', 1);
 INSERT INTO track_gid_redirect (new_id, gid) VALUES (1, '8f64df73-562c-4145-a9db-9736a3f04c27');
 
 INSERT INTO track_name (id, name) VALUES (2, 'The Sinner');
-INSERT INTO recording (id, artist_credit, gid, name) VALUES (2, 1, '2ea1383f-aca7-4a39-9839-576cf3af438b', 2);
-INSERT INTO track (id, gid, medium, artist_credit, name, position, number, recording) VALUES (2, 'a91e066b-4101-3f96-91e2-57b5d0dead60', 1, 1, 2, 1, '1', 2);
+INSERT INTO recording (id, artist_credit, gid, name) VALUES (2, 1, '2ea1383f-aca7-4a39-9839-576cf3af438b', 'The Sinner');
+INSERT INTO track (id, gid, medium, artist_credit, name, position, number, recording) VALUES (2, 'a91e066b-4101-3f96-91e2-57b5d0dead60', 1, 1, 'The Sinner', 1, '1', 2);
 
 INSERT INTO track_name (id, name) VALUES (3, 'Never Gonna Give You Up');
-INSERT INTO recording (id, artist_credit, gid, name) VALUES (3, 1, '770cc467-8dde-4d22-bc4c-a42f91e7515e', 3);
-INSERT INTO recording (id, artist_credit, gid, name) VALUES (4, 1, 'a45eb41b-5005-41b8-a0c9-17ba56ee3635', 3);
+INSERT INTO recording (id, artist_credit, gid, name) VALUES (3, 1, '770cc467-8dde-4d22-bc4c-a42f91e7515e', 'Never Gonna Give You Up');
+INSERT INTO recording (id, artist_credit, gid, name) VALUES (4, 1, 'a45eb41b-5005-41b8-a0c9-17ba56ee3635', 'Never Gonna Give You Up');
 
 INSERT INTO release_name (id, name) VALUES (1, 'The Best of Rick Astley');
-INSERT INTO release_group (id, artist_credit, gid, name, comment) VALUES (1, 1, 'a1f5f807-3851-48fb-838b-fb8a069f53e7', 1, 'release_group comment');
+INSERT INTO release_group (id, artist_credit, gid, name, comment) VALUES (1, 1, 'a1f5f807-3851-48fb-838b-fb8a069f53e7', 'The Best of Rick Astley', 'release_group comment');
 UPDATE release_group SET last_updated = '2012-04-10 14:00:00' WHERE id = 1;
 INSERT INTO release_group_gid_redirect (new_id, gid) VALUES (1, '188711ed-c99b-439c-844a-ca831f63a727');
-INSERT INTO release (id, artist_credit, gid, release_group, name) VALUES (1, 1, 'e1f5f807-3851-48fb-838b-fb8a069f53e7', 1, 1);
+INSERT INTO release (id, artist_credit, gid, release_group, name) VALUES (1, 1, 'e1f5f807-3851-48fb-838b-fb8a069f53e7', 1, 'The Best of Rick Astley');
 
 INSERT INTO release_name (id, name) VALUES (2, 'The Warning');
-INSERT INTO release_group (id, artist_credit, gid, name, type) VALUES (2, 2, '4c616513-9b14-3dfd-b023-a7e77e69a029', 2, 1);
-INSERT INTO release (id, artist_credit, gid, release_group, name) VALUES (2, 2, 'f80addb0-1f8c-3c37-a4a9-6f8867be35fe', 2, 2);
-INSERT INTO release (id, artist_credit, gid, release_group, name) VALUES (3, 2, '6ff468ec-c06d-3e90-b0eb-529af92784b7', 2, 2);
+INSERT INTO release_group (id, artist_credit, gid, name, type) VALUES (2, 2, '4c616513-9b14-3dfd-b023-a7e77e69a029', 'The Warning', 1);
+INSERT INTO release (id, artist_credit, gid, release_group, name) VALUES (2, 2, 'f80addb0-1f8c-3c37-a4a9-6f8867be35fe', 2, 'The Warning');
+INSERT INTO release (id, artist_credit, gid, release_group, name) VALUES (3, 2, '6ff468ec-c06d-3e90-b0eb-529af92784b7', 2, 'The Warning');
 
 INSERT INTO release_name (id, name) VALUES (3, 'One Life Stand');
-INSERT INTO release_group (id, artist_credit, gid, name) VALUES (3, 2, 'e83f684b-bc49-4ea2-91c4-b1583c741829', 3);
-INSERT INTO release (id, artist_credit, gid, release_group, name, status) VALUES (4, 2, '5ced615f-cd92-3b08-b3cb-5971e5bd6eb5', 3, 3, 1);
+INSERT INTO release_group (id, artist_credit, gid, name) VALUES (3, 2, 'e83f684b-bc49-4ea2-91c4-b1583c741829', 'One Life Stand');
+INSERT INTO release (id, artist_credit, gid, release_group, name, status) VALUES (4, 2, '5ced615f-cd92-3b08-b3cb-5971e5bd6eb5', 3, 'One Life Stand', 1);
 INSERT INTO release_country (release, country, date_year, date_month, date_day) VALUES (4, 151, null, 7, 23);
 INSERT INTO release_country (release, country, date_year, date_month, date_day) VALUES (4, 113, 2010, 7, 23);
 INSERT INTO release_country (release, country, date_year, date_month, date_day) VALUES (4, 203, null, null, null);
@@ -129,14 +134,14 @@ INSERT INTO release_country (release, country, date_year, date_month, date_day) 
 -- for unit testing ArtistCredit, Medium
 
 INSERT INTO artist_name (id, name) VALUES (5, 'Mono and Rick Astley feat. Hot Chip');
-INSERT INTO artist_credit (id, name, artist_count) VALUES (3, 5, 3);
-INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (3, 4, 3, '', 3);
-INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (3, 2, 1, ' and ', 2);
-INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (3, 5, 2, ' feat. ', 4);
+INSERT INTO artist_credit (id, name, artist_count) VALUES (3, 'Mono and Rick Astley feat. Hot Chip', 3);
+INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (3, 4, 3, '', 'Hot Chip');
+INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (3, 2, 1, ' and ', 'Mono');
+INSERT INTO artist_credit_name (artist_credit, artist, position, join_phrase, name) VALUES (3, 5, 2, ' feat. ', 'Rick Astley');
 
 INSERT INTO release_name (id, name) VALUES (4, 'Multi-Disc Extravaganza');
-INSERT INTO release_group (id, artist_credit, gid, name) VALUES (4, 3, 'f94f795c-cd59-4ea2-91c4-b1583c741829', 4);
-INSERT INTO release (id, artist_credit, gid, release_group, name) VALUES (5, 3, '6dfe725f-de93-3b08-b3cb-5971e5bd6eb5', 4, 4);
+INSERT INTO release_group (id, artist_credit, gid, name) VALUES (4, 3, 'f94f795c-cd59-4ea2-91c4-b1583c741829', 'Multi-Disc Extravaganza');
+INSERT INTO release (id, artist_credit, gid, release_group, name) VALUES (5, 3, '6dfe725f-de93-3b08-b3cb-5971e5bd6eb5', 4, 'Multi-Disc Extravaganza');
 INSERT INTO release_gid_redirect (new_id, gid) VALUES (5, '5d32bacc-d62a-4e77-9f0e-d934e53d5359');
 INSERT INTO release_unknown_country (release, date_year, date_month, date_day) VALUES (5, 2011, 7, 23);
 UPDATE release SET last_updated = '2012-04-10 14:00:00' WHERE id = 5;
@@ -145,7 +150,7 @@ INSERT INTO medium (id, release, position) VALUES (3, 5, 2);
 INSERT INTO medium (id, release, position, name) VALUES (2, 5, 1, 'Disc 1');
 UPDATE medium SET last_updated = '2012-04-10 14:00:00' WHERE id = 2;
 
-INSERT INTO track (id, gid, recording, medium, position, number, name, artist_credit, length) VALUES (4, '9324fa33-3f60-3f63-80b9-02a5134a5dd9', 2, 2, 2, 'A-2', 2, 2, null);
-INSERT INTO track (id, gid, recording, medium, position, number, name, artist_credit, length) VALUES (3, '3c22f2da-6c1e-3f0a-baba-4147fede5eae', 1, 2, 1, 'A-1', 1, 1, 254160); 
+INSERT INTO track (id, gid, recording, medium, position, number, name, artist_credit, length) VALUES (4, '9324fa33-3f60-3f63-80b9-02a5134a5dd9', 2, 2, 2, 'A-2', 'The Sinner', 2, null);
+INSERT INTO track (id, gid, recording, medium, position, number, name, artist_credit, length) VALUES (3, '3c22f2da-6c1e-3f0a-baba-4147fede5eae', 1, 2, 1, 'A-1', 'The Saint', 1, 254160); 
 INSERT INTO track_gid_redirect (new_id, gid) VALUES (3, '7e53ce62-562c-4145-a9db-9736a3f04c27');
 UPDATE track SET last_updated = '2013-05-24 11:03:00' WHERE id = 3;
