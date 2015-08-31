@@ -27,7 +27,14 @@ public enum ArtistType {
   /* */
   OTHER(3, "Other"),
   /* */
+  CHARACTER(4, "Character"),
+  /* */
+  ORCHESTRA(5, "Orchestra"),
+  /* */
+  CHOIR(6, "Choir"),
+  /* */
   UNDEFINED(null, null);
+
 
   private static final Map<Integer, ArtistType> idToType;
 
