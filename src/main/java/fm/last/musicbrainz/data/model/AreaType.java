@@ -27,6 +27,14 @@ public enum AreaType {
   /* */
   CITY(3, "City"),
   /* */
+  MUNICIPALITY(4, "Municipality"),
+  /* */
+  DISTRICT(5, "District"),
+  /* */
+  ISLAND(6, "Island"),
+  /* */
+  COUNTY(7, "County"),
+  /* */
   UNDEFINED(null, null);
 
   private static final Map<Integer, AreaType> idToType;
