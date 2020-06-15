@@ -53,7 +53,7 @@
 
   <properties>
     <hibernateVersion>3.6.9.Final</hibernateVersion>
-    <springVersion>3.2.2.RELEASE</springVersion>
+    <springVersion>5.2.7.RELEASE</springVersion>
     <slf4jVersion>1.7.5</slf4jVersion>
   </properties>
 
