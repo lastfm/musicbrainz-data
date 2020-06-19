@@ -45,7 +45,7 @@ public class ArtistTypeTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void unrecognisedTypeThrowsException() {
-    ArtistType.valueOf(5);
+    ArtistType.valueOf(Integer.MAX_VALUE);
   }
 
 }
