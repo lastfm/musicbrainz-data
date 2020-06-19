@@ -45,7 +45,7 @@ public class AreaTypeTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void unrecognisedIdThrowsException() {
-    AreaType.valueOf(5);
+    AreaType.valueOf(Integer.MAX_VALUE);
   }
 
 }
